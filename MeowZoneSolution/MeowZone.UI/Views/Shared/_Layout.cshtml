@@ -4,10 +4,22 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="StyleSheet.css"/>
 </head>
 <body>
-    <div>
-        @RenderBody()
-    </div>
+<div>
+	<div class="navbar">
+		<div>
+			<a href="#">Home</a>
+			<a href="#">Categories</a>
+		</div>
+		<div>
+			<a href="#">Sign in</a>
+			<a href="#">Register</a>
+		</div>
+
+	</div>
+	@RenderBody()
+</div>
 </body>
 </html>
