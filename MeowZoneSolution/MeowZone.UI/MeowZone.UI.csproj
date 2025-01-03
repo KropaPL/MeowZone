@@ -26,4 +26,22 @@
     <ProjectReference Include="..\MeowZone.Infrastructure\MeowZone.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Views\Post\EditPost.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Views\Post\EditPost.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Post\ListPosts.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Post\ShowPost.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Views\Post\ShowPost.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Views\Post\ListPosts.cshtml" />
+  </ItemGroup>
+
 </Project>
