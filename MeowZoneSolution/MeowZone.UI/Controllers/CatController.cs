@@ -2,6 +2,7 @@
 
 namespace MeowZone.UI.Controllers
 {
+	[Route("[controller]/[action]")]
 	public class CatController : Controller
 	{
 		public IActionResult CreateCat()
