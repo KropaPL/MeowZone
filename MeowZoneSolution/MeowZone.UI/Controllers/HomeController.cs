@@ -10,6 +10,9 @@ namespace MeowZone.Controllers
         {
 
         }
+
+        [Route("[action]")]
+        [Route("/")]
         public IActionResult Index()
         {
 
