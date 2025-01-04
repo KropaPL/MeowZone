@@ -29,7 +29,13 @@ namespace MeowZone.Core.Domain.Entities
 
         public ApplicationUser Author { get; set; }
 
-        [StringLength(500)]
+        [ForeignKey("Category")]
+        public Guid CategoryId { get; set; }
+        public Category Category { get; set; }
+
+        public int ViewCount { get; set; } = 0;
+
+		[StringLength(500)]
         public string Summary { get; set; }   
 
         public bool IsPublished { get; set; }

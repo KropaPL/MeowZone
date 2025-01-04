@@ -14,8 +14,20 @@ namespace MeowZone.Infrastructure.DbContext
 	internal class ApplicationDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, Guid>
 	{
 
+		public ApplicationDbContext(DbContextOptions options) : base(options)
+		{
+
+		}
+
 		public virtual DbSet<Cat> Cats { get; set; }	
 		public virtual DbSet<Category> Categories { get; set; }
 		public virtual DbSet<Post> Posts { get; set; }
+
+		protected override void OnModelCreating(ModelBuilder builder)
+		{
+			base.OnModelCreating(builder);
+
+
+		}
 	}
 }

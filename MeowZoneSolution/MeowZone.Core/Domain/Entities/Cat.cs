@@ -1,21 +1,26 @@
 ﻿using MeowZone.Enums;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using MeowZone.Core.Domain.IdentityEntities;
 
 namespace MeowZone.Models
 {
-    public class Cat
+	/// <summary>
+	/// Domain Model for Cat
+	/// </summary>
+	public class Cat
     {
-        /// <summary>
-        /// Domain Model for Cat
-        /// </summary>
+        
         [Key]
         public Guid Id { get; set; }
 
-        [Required]
-        [StringLength(100)]
-        public string Name { get; set; }
+		[Required(ErrorMessage = "Name is required")]
+		[MinLength(1, ErrorMessage = "Name cannot be empty")]
+		[StringLength(100)]
+		public string Name { get; set; }
 
-        [Range(0.1, 50.0)]
+
+		[Range(0.1, 50.0)]
         public decimal Weight { get; set; }
 
         [Range(0, 30)]
@@ -27,6 +32,11 @@ namespace MeowZone.Models
         [StringLength(30)]
         public string? Color { get; set; }
 
-        public GenderOptions? Gender { get; set; }
+        [ForeignKey("Owner")]
+        public Guid OwnerId { get; set; }
+        public ApplicationUser Owner { get; set; }
+
+
+		public GenderOptions? Gender { get; set; }
     }
 }
