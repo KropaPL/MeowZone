@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 
 namespace MeowZone.Core.Domain.IdentityEntities
 {
-    public class ApplicationRole
+    public class ApplicationRole : IdentityRole<Guid>
     {
     }
 }

@@ -42,7 +42,6 @@ namespace MeowZone.Core.Domain.RepositoryContracts
 		/// </summary>
 		/// <param name="UserID">UserID to search by</param>
 		/// <returns>A cat object or null</returns>
-
 		Task<List<Cat>> GetCatsByUserID(Guid UserID);
     }
 }
