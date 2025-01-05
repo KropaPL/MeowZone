@@ -8,6 +8,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MeowZone.Models;
 
 namespace MeowZone.Core.DTO
 {
@@ -30,10 +31,19 @@ namespace MeowZone.Core.DTO
 
 		[StringLength(30)]
 		public string? Color { get; set; }
-
-		[ForeignKey("Owner")]
-		public Guid OwnerId { get; set; }
-		public ApplicationUser Owner { get; set; }
 		public GenderOptions? Gender { get; set; }
+
+		public Cat ToCat()
+		{
+			return new Cat()
+			{
+				Name = Name,
+				Weight = Weight,
+				Age = Age,
+				Breed = Breed,
+				Color = Color,
+				Gender = Gender,
+			};
+		}
 	}
 }
