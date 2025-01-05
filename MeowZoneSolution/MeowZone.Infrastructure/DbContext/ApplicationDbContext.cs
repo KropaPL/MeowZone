@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MeowZone.Infrastructure.DbContext
 {
-	internal class ApplicationDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, Guid>
+	public class ApplicationDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, Guid>
 	{
 
 		public ApplicationDbContext(DbContextOptions options) : base(options)

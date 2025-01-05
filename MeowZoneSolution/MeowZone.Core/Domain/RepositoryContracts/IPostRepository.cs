@@ -28,7 +28,7 @@ namespace MeowZone.Core.Domain.RepositoryContracts
 		/// </summary>
 		/// <param name="postId">PostID (guid) to delete</param>
 		/// <returns>Return true id the deletion is successful; otherwise, return false.</returns>
-		Task DeletePost(Guid postId);
+		Task<bool> DeletePost(Guid postId);
 		/// <summary>
 		/// 
 		/// </summary>
@@ -40,6 +40,6 @@ namespace MeowZone.Core.Domain.RepositoryContracts
 		/// </summary>
 		/// <param name="postId"></param>
 		/// <returns></returns>
-		Task<Post> GetPostById(Guid postId);
+		Task<Post?> GetPostById(Guid postId);
 	}
 }

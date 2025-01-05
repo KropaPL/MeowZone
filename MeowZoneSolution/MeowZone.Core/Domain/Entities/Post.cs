@@ -12,7 +12,7 @@ namespace MeowZone.Core.Domain.Entities
     public class Post
     {
         [Key]
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         [Required]
         [StringLength(200)]
