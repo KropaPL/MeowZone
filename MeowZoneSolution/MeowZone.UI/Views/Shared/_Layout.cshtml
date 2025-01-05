@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using System.Security.Cryptography
+<!DOCTYPE html>
 
 <html>
 <head>
@@ -16,8 +17,15 @@
 			<a asp-controller="Cat" asp-action="ShowCats">Your cats</a>
 		</div>
 		<div>
-			<a href="#">Sign in</a>
-			<a href="#">Register</a>
+			@{
+				if (User.Identity?.Name is not null)
+				{
+					@:Hello @User.Identity.Name!
+				}
+			}
+
+			<a href="#">Login</a>
+			<a asp-controller="Account" asp-action="Register">Register</a>
 		</div>
 
 	</div>

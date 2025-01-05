@@ -1,0 +1,94 @@
+﻿@model RegisterDTO
+
+@{
+	ViewBag.Title = "Register";
+	Layout = "_Layout";
+}
+
+<div class="welcome-text">Register</div>
+
+<form asp-controller="Account" asp-action="Register" method="post">
+	
+	@*UserName*@
+	<div>
+		<div>
+			<label asp-for="UserName" class="">Name</label>
+		</div>
+		<div>
+			<input asp-for="UserName" class=""/>
+			<span asp-validation-for="UserName"></span>
+		</div>
+	</div>
+	
+	@*Email*@
+	<div>
+		<div>
+			<label asp-for="Email" class="">Email</label>
+		</div>
+		<div>
+			<input asp-for="Email" class="" />
+			<span asp-validation-for="Email"></span>
+		</div>
+	</div>
+	
+	@*Password*@
+	<div>
+		<div>
+			<label asp-for="Password" class="">Password</label>
+		</div>
+		<div>
+			<input asp-for="Password" class="" />
+			<span asp-validation-for="Password"></span>
+		</div>
+	</div>
+	
+	@*ConfirmPassword*@
+	<div>
+		<div>
+			<label asp-for="ConfirmPassword" class="">ConfirmPassword</label>
+		</div>
+		<div>
+			<input asp-for="ConfirmPassword" class="" />
+			<span asp-validation-for="ConfirmPassword"></span>
+		</div>
+	</div>
+	
+	
+	@*User Type*@
+	<div>
+		<div>
+			<label asp-for="UserType">User Type</label>
+		</div>
+		<div>
+			<input type="radio" id="User" asp-for="UserType" value="User" checked/>
+			<label for="User">User</label>
+			
+			<input type="radio" id="Admin" asp-for="UserType" value="Admin" />
+			<label for="Admin">Admin</label>
+		</div>
+	</div>
+	
+	@*Register button*@
+	<div>
+		<div></div>
+		<div>
+			<button type="submit">Register</button>
+
+			<div asp-validation-summary="All"></div>
+
+			@if (ViewBag.Errors != null)
+			{
+				<div>
+					<ul>
+						@foreach (string error in ViewBag.Errors)
+						{
+							<li>@error</li>
+						}
+					</ul>
+				</div>
+			}
+		</div>
+	</div>
+
+</form>
+

@@ -6,7 +6,6 @@ namespace MeowZone.Core.Domain.IdentityEntities
 {
     public class ApplicationUser : IdentityUser<Guid>
     {
-        public string? UserName { get; set; }
         public virtual ICollection<Cat>? UsersCats { get; set; }
         [StringLength(500)]
         public string? Bio { get; set; }
