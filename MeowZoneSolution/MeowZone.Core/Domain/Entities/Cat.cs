@@ -10,7 +10,6 @@ namespace MeowZone.Models
 	/// </summary>
 	public class Cat
     {
-        
         [Key]
         public Guid Id { get; set; }
 
@@ -19,12 +18,11 @@ namespace MeowZone.Models
 		[StringLength(100)]
 		public string Name { get; set; }
 
-
 		[Range(0.1, 50.0)]
-        public decimal Weight { get; set; }
+        public decimal? Weight { get; set; }
 
         [Range(0, 30)]
-        public int Age { get; set; }
+        public int? Age { get; set; }
 
         [StringLength(50)]
         public string? Breed { get; set; }
@@ -35,8 +33,6 @@ namespace MeowZone.Models
         [ForeignKey("Owner")]
         public Guid OwnerId { get; set; }
         public ApplicationUser Owner { get; set; }
-
-
-		public GenderOptions? Gender { get; set; }
+		public GenderOptions? Gender { get; set; } 
     }
 }
