@@ -18,14 +18,20 @@
 		</div>
 		<div>
 			@{
-				if (User.Identity?.Name is not null)
+				if (User.Identity.IsAuthenticated)
 				{
 					@:Hello @User.Identity.Name!
+					<a asp-controller="Account" asp-action="Logout">Logout</a>
 				}
+				else
+				{
+					<a href="#">Login</a>
+					<a asp-controller="Account" asp-action="Register">Register</a>
+				}
+
 			}
 
-			<a href="#">Login</a>
-			<a asp-controller="Account" asp-action="Register">Register</a>
+			
 		</div>
 
 	</div>
