@@ -7,7 +7,7 @@ using MeowZone.Core.DTO;
 
 namespace MeowZone.Core.ServiceContracts
 {
-	public interface ICatAdderService
+	public interface ICatsAdderService
 	{
 		Task<CatResponse> AddCat(CatAddRequest? addRequest);
 	}

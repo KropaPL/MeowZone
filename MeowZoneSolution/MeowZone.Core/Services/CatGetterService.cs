@@ -10,11 +10,11 @@ using MeowZone.Models;
 
 namespace MeowZone.Core.Services
 {
-	public class CatGetterService : ICatGetterService
+	public class CatsGetterService : ICatsGetterService
 	{
 		private readonly ICatsRepository _catsRepository;
 
-		public CatGetterService(ICatsRepository catsRepository)
+		public CatsGetterService(ICatsRepository catsRepository)
 		{
 			_catsRepository = catsRepository;
 		}

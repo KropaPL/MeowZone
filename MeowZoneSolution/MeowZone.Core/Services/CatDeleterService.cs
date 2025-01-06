@@ -9,11 +9,11 @@ using MeowZone.Models;
 
 namespace MeowZone.Core.Services
 {
-	public class CatDeleterService : ICatDeleterService
+	public class CatsDeleterService : ICatsDeleterService
 	{
 		private readonly ICatsRepository _catsRepository;
 
-		public CatDeleterService(ICatsRepository catRepository)
+		public CatsDeleterService(ICatsRepository catRepository)
 		{
 			_catsRepository = catRepository;
 		}

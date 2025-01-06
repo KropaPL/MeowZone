@@ -8,7 +8,7 @@ using MeowZone.Models;
 
 namespace MeowZone.Core.ServiceContracts
 {
-	public interface ICatGetterService
+	public interface ICatsGetterService
 	{
 		Task<List<CatResponse>> getAllUserCats(Guid guid);
 		Task<CatResponse> GetCatByCatId(Guid? guid);

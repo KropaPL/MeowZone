@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MeowZone.Core.ServiceContracts
 {
-	public interface ICatDeleterService
+	public interface ICatsDeleterService
 	{
 		Task<bool> DeleteCat(Guid id);
 	}

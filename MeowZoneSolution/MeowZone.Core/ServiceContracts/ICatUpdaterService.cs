@@ -10,7 +10,7 @@ namespace MeowZone.Core.ServiceContracts
 	/// <summary>
 	/// Represents business logic (upload) for manipulating cat entity
 	/// </summary>
-	public interface ICatUpdaterService
+	public interface ICatsUpdaterService
 	{
 		/// <summary>
 		/// Updates the specified cat details based on the given cat ID
