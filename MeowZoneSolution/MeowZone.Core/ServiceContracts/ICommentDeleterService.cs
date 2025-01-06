@@ -8,6 +8,6 @@ namespace MeowZone.Core.ServiceContracts
 {
 	public interface ICommentDeleterService
 	{
-		Task<bool> DeleteComment(Guid postId);
+		Task<bool> DeleteComment(Guid commentId);
 	}
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MeowZone.Core.Domain.Entities;
 using MeowZone.Core.Domain.RepositoryContracts;
 using MeowZone.Core.ServiceContracts;
 
@@ -17,9 +18,22 @@ namespace MeowZone.Core.Services
 			_commentRepository = commentRepository;
 		}
 
-		public Task<bool> DeleteComment(Guid postId)
+		public async Task<bool> DeleteComment(Guid commentId)
 		{
-			throw new NotImplementedException();
+			if (commentId == null)
+			{
+				throw new ArgumentNullException(nameof(commentId));
+			}
+
+			Comment? comment = await _commentRepository.GetCommentByCommentId(commentId);
+			if (comment == null)
+			{
+				return false;
+			}
+
+			await _commentRepository.DeleteComment(commentId);
+
+			return true;
 		}
 	}
 }
