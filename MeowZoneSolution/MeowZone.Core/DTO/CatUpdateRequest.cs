@@ -21,10 +21,10 @@ namespace MeowZone.Core.DTO
 		public string Name { get; set; }
 
 		[Range(0.1, 50.0)]
-		public decimal Weight { get; set; }
+		public decimal? Weight { get; set; }
 
 		[Range(0, 30)]
-		public int Age { get; set; }
+		public int? Age { get; set; }
 
 		[StringLength(50)]
 		public string? Breed { get; set; }

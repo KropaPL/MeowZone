@@ -19,7 +19,7 @@ namespace MeowZone.Core.Services
 			_catsRepository = catRepository;
 		}
 
-		public async Task<CatResponse> AddCat(CatAddRequest? catAddRequest)
+		public async Task<CatResponse> AddCat(CatAddRequest? catAddRequest, Guid OwnerId)
 		{
 			if (catAddRequest == null)
 			{
@@ -29,6 +29,7 @@ namespace MeowZone.Core.Services
 			Cat cat = catAddRequest.ToCat();
 
 			cat.Id = Guid.NewGuid();
+			cat.OwnerId = OwnerId;
 
 			await _catsRepository.AddCat(cat);
 

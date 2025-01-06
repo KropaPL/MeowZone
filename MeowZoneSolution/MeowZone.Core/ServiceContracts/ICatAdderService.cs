@@ -9,6 +9,6 @@ namespace MeowZone.Core.ServiceContracts
 {
 	public interface ICatsAdderService
 	{
-		Task<CatResponse> AddCat(CatAddRequest? addRequest);
+		Task<CatResponse> AddCat(CatAddRequest? addRequest, Guid OwnerId);
 	}
 }

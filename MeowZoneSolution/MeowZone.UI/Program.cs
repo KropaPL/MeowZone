@@ -1,6 +1,7 @@
 using MeowZone.Core.Domain.IdentityEntities;
 using MeowZone.Core.Domain.RepositoryContracts;
 using MeowZone.Core.ServiceContracts;
+using MeowZone.Core.Services;
 using MeowZone.Infrastructure.DbContext;
 using MeowZone.Infrastructure.Repositories;
 using Microsoft.AspNetCore.Identity;
@@ -34,6 +35,12 @@ namespace MeowZone
 	            .AddRoleStore<RoleStore<ApplicationRole, ApplicationDbContext, Guid>>();
 
             builder.Services.AddScoped<ICatsRepository, CatsRepository>();
+
+            builder.Services.AddScoped<ICatsAdderService, CatsAdderService>();
+            builder.Services.AddScoped<ICatsDeleterService, CatsDeleterService>();
+            builder.Services.AddScoped<ICatsGetterService, CatsGetterService>();
+            builder.Services.AddScoped<ICatsUpdaterService, CatsUpdaterService>();
+
 
 
             var app = builder.Build();
