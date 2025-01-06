@@ -22,6 +22,7 @@ namespace MeowZone.Infrastructure.DbContext
 		public virtual DbSet<Cat> Cats { get; set; }	
 		public virtual DbSet<Category> Categories { get; set; }
 		public virtual DbSet<Post> Posts { get; set; }
+		public virtual DbSet<Comment> Comments { get; set; }
 
 		protected override void OnModelCreating(ModelBuilder builder)
 		{
