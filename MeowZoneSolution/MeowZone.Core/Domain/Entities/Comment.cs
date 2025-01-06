@@ -14,9 +14,10 @@ namespace MeowZone.Core.Domain.Entities
 		[Key]
 		public Guid Id { get; set; }
 		[Required]
-		public string Content { get; set; }
+		public string CommentContent { get; set; }
 		[ForeignKey("Author")]
 		public Guid AuthorId { get; set; }
+		public string? AuthorName { get; set; }
 
 		[ForeignKey("PostId")]
 		public Guid PostId { get; set; }
@@ -28,7 +29,7 @@ namespace MeowZone.Core.Domain.Entities
 		{
 			return new CommentResponse()
 			{
-				Content = Content,
+				CommentContent = CommentContent,
 				CreatedAt = CreatedAt,
 				Id = Id
 			};

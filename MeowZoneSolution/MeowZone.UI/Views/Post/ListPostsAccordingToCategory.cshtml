@@ -28,6 +28,18 @@
 			<button type="submit" class="btn btn-danger">Delete</button>
 		</form>
 
+		<form method="get" asp-controller="Comment" asp-action="GoToComments">
+			<input type="hidden" name="Id" value="@post.Id" />
+			<input type="hidden" name="categoryId" value="@post.CategoryId" />
+			<input type="hidden" name="content" value="@post.Content" />
+			<input type="hidden" name="createdAt" value="@post.CreatedAt" />
+			<input type="hidden" name="Title" value="@post.Title" />
+			<input type="hidden" name="authorId" value="@post.AuthorId" />
+
+			<button type="submit" class="btn btn-danger">Go to comments</button>
+		</form>
+
+
 		<br />
 	</div>
 }

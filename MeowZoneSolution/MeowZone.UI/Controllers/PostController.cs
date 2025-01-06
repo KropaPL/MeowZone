@@ -119,16 +119,12 @@ namespace MeowZone.UI.Controllers
 		public async Task<IActionResult> ListPostsAccordingToCategory(Guid categoryId)
 		{
 			var posts = await _postsGetterService.getAllPostsbyCategoryId(categoryId);
+			posts = posts.OrderBy(temp => temp.CreatedAt).ToList();
 			var categoryResponse = (await _categoryGetterService.GetCategoryByCategoryId(categoryId));
 			ViewBag.Category = categoryResponse.Name;
 			ViewBag.CategoryId = categoryId;
 
 			return View(posts);
-		}
-
-		public IActionResult ListPosts()
-		{
-			return View();
 		}
 	}
 }

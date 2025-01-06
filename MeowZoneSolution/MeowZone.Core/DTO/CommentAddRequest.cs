@@ -11,15 +11,17 @@ namespace MeowZone.Core.DTO
 {
 	public class CommentAddRequest
 	{
-		public string Content { get; set; }
+		public string CommentContent { get; set; }
 		public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+		public Guid PostId { get; set; }
 
 		public Comment ToComment()
 		{
 			return new Comment()
 			{
-				Content = Content,
+				CommentContent = CommentContent,
 				CreatedAt = CreatedAt,
+				PostId = PostId
 			};
 		}
 	}

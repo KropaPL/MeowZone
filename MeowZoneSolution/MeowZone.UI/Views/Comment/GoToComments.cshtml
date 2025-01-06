@@ -1,0 +1,52 @@
+﻿@using MeowZone.Core.Domain.Entities
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model CommentAddRequest
+
+@{
+    var comments = (List<Comment>)ViewBag.Comments;
+}
+
+@{
+	ViewBag.Title = "Add Comment";
+	Layout = "_Layout";
+}
+
+<div class="welcome-text">
+	@ViewBag.PostTitle
+</div>
+<div class="small-welcome-text">
+	@ViewBag.CreatedAt
+</div>
+<div class="small-welcome-text">
+	@ViewBag.Content
+</div>
+
+<div class="small-welcome-text">
+	Add comment
+</div>
+
+@{
+	foreach (var comment in comments)
+	{
+		<div>
+			@comment.AuthorName
+		</div>
+		<div>
+			@comment.CreatedAt
+		</div>
+		<div>
+			@comment.CommentContent
+		</div>
+		<br/>
+	}
+}
+
+<form asp-controller="Comment" asp-action="AddComment" method="post">
+	<div class="form-group">
+		<label asp-for="CommentContent" class="control-label">Comment</label>
+		<input asp-for="CommentContent" class="form-control" />
+		<span asp-validation-for="CommentContent" class="text-danger"></span>
+	</div>
+	<input type="hidden" asp-for="PostId" />
+	<button type="submit" class="btn btn-primary">Add Comment</button>
+</form>

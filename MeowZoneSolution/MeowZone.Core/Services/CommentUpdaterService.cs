@@ -32,7 +32,7 @@ namespace MeowZone.Core.Services
 				throw new ArgumentNullException(nameof(commentUpdateRequest));
 			}
 
-			matchingComment.Content = commentUpdateRequest.Content;
+			matchingComment.CommentContent = commentUpdateRequest.CommentContent;
 
 			await _commentRepository.UpdateComment(matchingComment);
 

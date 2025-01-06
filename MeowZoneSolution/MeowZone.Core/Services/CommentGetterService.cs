@@ -19,11 +19,10 @@ namespace MeowZone.Core.Services
 			_commentRepository = commentRepository;
 		}
 
-		public async Task<List<CommentResponse>> getAllCommentbyPostId(Guid categoryId)
+		public async Task<List<Comment>> getAllCommentsbyPostId(Guid categoryId)
 		{
 			var comments = await _commentRepository.GetCommentsByPostId(categoryId);
-			return comments
-				.Select(temp => temp.ToCommentResponse()).ToList();
+			return comments;
 		}
 
 		public Task<List<CommentResponse>> getAllComments()

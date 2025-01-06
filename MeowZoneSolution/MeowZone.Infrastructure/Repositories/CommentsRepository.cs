@@ -35,7 +35,7 @@ namespace MeowZone.Infrastructure.Repositories
 			if (matchingComment == null)
 				return comment;
 
-			matchingComment.Content = comment.Content;
+			matchingComment.CommentContent = comment.CommentContent;
 
 			int countUpdated = await _db.SaveChangesAsync();
 

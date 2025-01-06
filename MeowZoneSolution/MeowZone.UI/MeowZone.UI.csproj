@@ -33,12 +33,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <_ContentIncludedByDefault Remove="Views\Comment\AddComment.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Comment\GoToComments.cshtml" />
     <_ContentIncludedByDefault Remove="Views\Post\EditPost.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
-    <UpToDateCheckInput Remove="Views\Comment\AddComment.cshtml" />
+    <UpToDateCheckInput Remove="Views\Comment\GoToComments.cshtml" />
   </ItemGroup>
 
 </Project>

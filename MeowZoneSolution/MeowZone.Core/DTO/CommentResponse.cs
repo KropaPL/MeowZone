@@ -11,7 +11,7 @@ namespace MeowZone.Core.DTO
 	public class CommentResponse
 	{
 		public Guid Id { get; set; }
-		public string Content { get; set; }
+		public string CommentContent { get; set; }
 		public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 	}
 }
