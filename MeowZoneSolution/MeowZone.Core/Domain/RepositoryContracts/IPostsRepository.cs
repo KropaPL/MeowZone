@@ -30,17 +30,21 @@ namespace MeowZone.Core.Domain.RepositoryContracts
 		/// <returns>Return true id the deletion is successful; otherwise, return false.</returns>
 		Task<bool> DeletePost(Guid postId);
 		/// <summary>
-		/// 
+		/// Gets all Posts from database
 		/// </summary>
-		/// <returns></returns>
+		/// <returns>Returns list of all posts from database</returns>
 		Task<List<Post>> GetAllPosts();
 
-
+		/// <summary>
+		/// Gets list of posts based on categoryId
+		/// </summary>
+		/// <param name="id">CategoryID to search posts</param>
+		/// <returns></returns>
 		Task<List<Post>> GetAllPostsAccordingToCategoryId(Guid id);
 		/// <summary>
-		/// 
+		/// Gets post based on given post id
 		/// </summary>
-		/// <param name="postId"></param>
+		/// <param name="postId">PostId to search</param>
 		/// <returns></returns>
 		Task<Post?> GetPostByPostId(Guid postId);
 	}

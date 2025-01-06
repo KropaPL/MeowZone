@@ -38,6 +38,7 @@ namespace MeowZone
             builder.Services.AddScoped<ICatsRepository, CatsRepository>();
             builder.Services.AddScoped<ICategoriesRepository, CategoriesRepository>();
             builder.Services.AddScoped<IPostsRepository, PostsRepository>();
+            builder.Services.AddScoped<ICommentRepository, CommentsRepository>();
 
 
             // Cats Services
