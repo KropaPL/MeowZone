@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MeowZone.Core.Domain.Entities;
 using MeowZone.Core.Domain.RepositoryContracts;
 using MeowZone.Core.DTO;
 using MeowZone.Core.ServiceContracts;
@@ -17,9 +18,25 @@ namespace MeowZone.Core.Services
 		{
 			_commentRepository = commentRepository;
 		}
-		public Task<CommentResponse> UpdatePost(CommentUpdateResponse? commentUpdateResponse)
+		public async Task<CommentResponse> UpdatePost(CommentUpdateRequest? commentUpdateRequest)
 		{
-			throw new NotImplementedException();
+			if (commentUpdateRequest == null)
+			{
+				throw new ArgumentNullException(nameof(commentUpdateRequest));
+			}
+
+			Comment? matchingComment = await _commentRepository.GetCommentByCommentId(commentUpdateRequest.Id);
+
+			if (matchingComment == null)
+			{
+				throw new ArgumentNullException(nameof(commentUpdateRequest));
+			}
+
+			matchingComment.Content = commentUpdateRequest.Content;
+
+			await _commentRepository.UpdateComment(matchingComment);
+
+			return matchingComment.ToCommentResponse();
 		}
 	}
 }
