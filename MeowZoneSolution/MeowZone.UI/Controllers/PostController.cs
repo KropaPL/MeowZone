@@ -60,12 +60,20 @@ namespace MeowZone.UI.Controllers
 		}
 
 		[HttpPost]
-		public IActionResult DeletePost()
+		public async Task<IActionResult> DeletePost(Guid postId, Guid categoryId)
 		{
-			return View();
+			var post = await _postsGetterService.GetPostByPostId(postId);
+			if (post == null)
+			{
+				return NotFound();
+			}
+
+			await _postsDeleterService.DeletePost(postId);
+
+			return RedirectToAction(nameof(ListPostsAccordingToCategory), "Post", new { categoryId = categoryId });
 		} 
 
-		public IActionResult ShowPost()
+		public IActionResult ShowPostWithComments()
 		{
 			return View();
 		}

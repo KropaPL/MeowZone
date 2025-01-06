@@ -24,8 +24,17 @@
 
 		<form method="post" asp-controller="Post" asp-action="DeletePost">
 			<input type="hidden" name="postId" value="@post.Id" />
+			<input type="hidden" name="categoryId" value="@post.CategoryId" />
 			<button type="submit" class="btn btn-danger">Delete</button>
 		</form>
+
 		<br />
 	</div>
 }
+
+<div>
+	<a href="@Url.Action("ShowCategories", "Category")" class="btn btn-secondary">Go back to Categories</a>
+</div>
+
+
+

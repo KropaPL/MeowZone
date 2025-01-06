@@ -58,7 +58,7 @@ namespace MeowZone.Infrastructure.Repositories
 
 		public async Task<List<Post>> GetAllPosts()
 		{
-			return await _db.Posts.Include("Post").ToListAsync();
+			return await _db.Posts.ToListAsync();
 		}
 
 		public async Task<List<Post>> GetAllPostsAccordingToCategoryId(Guid id)
@@ -69,7 +69,7 @@ namespace MeowZone.Infrastructure.Repositories
 
 		public async Task<Post?> GetPostByPostId(Guid postId)
 		{
-			return await _db.Posts.Include("Post")
+			return await _db.Posts
 				.FirstOrDefaultAsync(temp => temp.Id == postId);
 		}
 	}
