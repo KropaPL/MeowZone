@@ -33,7 +33,7 @@ namespace MeowZone
 	            .AddUserStore<UserStore<ApplicationUser, ApplicationRole, ApplicationDbContext, Guid>>()
 	            .AddRoleStore<RoleStore<ApplicationRole, ApplicationDbContext, Guid>>();
 
-            builder.Services.AddScoped<ICatRepository, CatRepository>();
+            builder.Services.AddScoped<ICatsRepository, CatsRepository>();
 
 
             var app = builder.Build();

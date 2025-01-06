@@ -10,7 +10,7 @@ namespace MeowZone.Core.ServiceContracts
 {
 	public interface ICatGetterService
 	{
-		Task<List<CatResponse>> getAllCats();
+		Task<List<CatResponse>> getAllUserCats(Guid guid);
 		Task<CatResponse> GetCatByCatId(Guid? guid);
 	}
 }

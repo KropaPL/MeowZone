@@ -7,7 +7,7 @@ using MeowZone.Models;
 
 namespace MeowZone.Core.Domain.RepositoryContracts
 {
-    public interface ICatRepository
+    public interface ICatsRepository
     {
         /// <summary>
         /// Adds a cat object to the database

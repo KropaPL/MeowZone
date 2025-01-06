@@ -12,11 +12,11 @@ namespace MeowZone.Core.Services
 {
 	public class CatAdderService : ICatAdderService
 	{
-		private readonly ICatRepository _catRepository;
+		private readonly ICatsRepository _catsRepository;
 
-		public CatAdderService(ICatRepository catRepository)
+		public CatAdderService(ICatsRepository catRepository)
 		{
-			_catRepository = catRepository;
+			_catsRepository = catRepository;
 		}
 
 		public async Task<CatResponse> AddCat(CatAddRequest? catAddRequest)
@@ -30,7 +30,7 @@ namespace MeowZone.Core.Services
 
 			cat.Id = Guid.NewGuid();
 
-			await _catRepository.AddCat(cat);
+			await _catsRepository.AddCat(cat);
 
 			return cat.ToCatResponse();
 		}

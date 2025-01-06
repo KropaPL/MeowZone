@@ -11,11 +11,11 @@ using Microsoft.EntityFrameworkCore.SqlServer.Query.Internal;
 
 namespace MeowZone.Infrastructure.Repositories
 {
-	public class CatRepository : ICatRepository
+	public class CatsRepository : ICatsRepository
 	{
 		private readonly ApplicationDbContext _db;
 
-		public CatRepository(ApplicationDbContext db)
+		public CatsRepository(ApplicationDbContext db)
 		{
 			_db = db;
 		}

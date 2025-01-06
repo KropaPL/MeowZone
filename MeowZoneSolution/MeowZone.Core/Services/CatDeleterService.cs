@@ -11,11 +11,11 @@ namespace MeowZone.Core.Services
 {
 	public class CatDeleterService : ICatDeleterService
 	{
-		private readonly ICatRepository _catRepository;
+		private readonly ICatsRepository _catsRepository;
 
-		public CatDeleterService(ICatRepository catRepository)
+		public CatDeleterService(ICatsRepository catRepository)
 		{
-			_catRepository = catRepository;
+			_catsRepository = catRepository;
 		}
 		public async Task<bool> DeleteCat(Guid id)
 		{
@@ -24,13 +24,13 @@ namespace MeowZone.Core.Services
 				throw new ArgumentNullException(nameof(id));
 			}
 
-			Cat? cat = await _catRepository.GetCatByCatId(id);
+			Cat? cat = await _catsRepository.GetCatByCatId(id);
 			if (cat == null)
 			{
 				return false;
 			}
 
-			await _catRepository.DeleteCat(id);
+			await _catsRepository.DeleteCat(id);
 
 			return true;
 		}
