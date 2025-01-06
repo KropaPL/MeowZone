@@ -85,6 +85,9 @@ namespace MeowZone
             builder.Services.AddScoped<ICommentGetterService, CommentGetterService>();
             builder.Services.AddScoped<ICommentUpdaterService, CommentUpdaterService>();
 
+            // Barf Calculator
+            builder.Services.AddScoped<IBarfCalculator, BarfCalculator>();
+
 
             var app = builder.Build();
 

@@ -93,6 +93,7 @@ namespace MeowZone.UI.Controllers
 
 			await _postsUpdaterService.UpdatePost(postUpdateRequest);
 
+			ViewBag.categoryId = post.CategoryId;
 			return RedirectToAction(nameof(ListPostsAccordingToCategory), "Post", new { categoryId = post.CategoryId });
 		}
 

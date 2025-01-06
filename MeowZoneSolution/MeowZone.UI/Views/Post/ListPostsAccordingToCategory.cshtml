@@ -3,6 +3,7 @@
 @{
 	ViewBag.Title = ViewBag.Category;
 	Layout = "_Layout";
+	var currentUserId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
 }
 
 <div class="welcome-text">@ViewBag.Category</div>
@@ -18,14 +19,10 @@
 		<p><strong>Author:</strong> @post.AuthorName</p>
 		<div>@post.Content</div>
 
-		
-		
-		@if(User.IsInRole("Admin")){
-			<form asp-controller="Post" asp-action="EditPost" method="get">
-				<input type="hidden" name="postId" value="@post.Id" />
-				<button type="submit">Edit</button>
-			</form>
 
+
+		@if (User.IsInRole("Admin") || post.AuthorId.ToString() == currentUserId)
+		{
 			<form asp-controller="Post" asp-action="EditPost" method="get">
 				<input type="hidden" name="postId" value="@post.Id" />
 				<button type="submit">Edit</button>
@@ -54,10 +51,6 @@
 		<br />
 	</div>
 }
-
-<div>
-	<a href="@Url.Action("ShowCategories", "Category")" class="btn btn-secondary">Go back to Categories</a>
-</div>
 
 
 
