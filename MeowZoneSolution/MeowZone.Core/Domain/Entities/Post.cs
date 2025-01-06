@@ -40,6 +40,7 @@ namespace MeowZone.Core.Domain.Entities
                 CategoryId = CategoryId,
                 Content = Content,
                 CreatedAt = CreatedAt,
+                Title = Title
 
 	        };
         }

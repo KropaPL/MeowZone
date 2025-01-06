@@ -18,7 +18,6 @@ namespace MeowZone.Core.DTO
 		public string Title { get; set; }
 
 		[Required]
-		[MinLength(20, ErrorMessage = "Content must be at least 20 characters long.")]
 		public string Content { get; set; }
 
 		public Post ToPost()

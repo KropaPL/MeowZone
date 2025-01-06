@@ -54,9 +54,46 @@ namespace MeowZone.UI.Controllers
 
 			return RedirectToAction(nameof(ListPostsAccordingToCategory), "Post", new { categoryId = postAddRequest.CategoryId });
 		}
-		public IActionResult EditPost()
+
+		[HttpGet]
+		public async Task<IActionResult> EditPost(Guid postId)
 		{
-			return View();
+			var post = await _postsGetterService.GetPostByPostId(postId);
+			if (post == null)
+			{
+				return NotFound();
+			}
+
+			var postUpdateRequest = new PostUpdateRequest()
+			{
+				Id = post.Id,
+				Content = post.Content,
+				Title = post.Title
+			};
+
+			ViewBag.CategoryId = post.CategoryId;
+			ViewBag.AuthorId = post.AuthorId;
+
+			return View(postUpdateRequest);
+		}
+
+		[HttpPost]
+		public async Task<IActionResult> EditPost(PostUpdateRequest postUpdateRequest)
+		{
+			if (!ModelState.IsValid)
+			{
+				return View(postUpdateRequest);
+			}
+
+			var post = await _postsGetterService.GetPostByPostId(postUpdateRequest.Id);
+			if (post == null)
+			{
+				return NotFound();
+			}
+
+			await _postsUpdaterService.UpdatePost(postUpdateRequest);
+
+			return RedirectToAction(nameof(ListPostsAccordingToCategory), "Post", new { categoryId = post.CategoryId });
 		}
 
 		[HttpPost]
@@ -71,7 +108,7 @@ namespace MeowZone.UI.Controllers
 			await _postsDeleterService.DeletePost(postId);
 
 			return RedirectToAction(nameof(ListPostsAccordingToCategory), "Post", new { categoryId = categoryId });
-		} 
+		}
 
 		public IActionResult ShowPostWithComments()
 		{

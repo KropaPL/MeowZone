@@ -34,11 +34,6 @@
 
   <ItemGroup>
     <_ContentIncludedByDefault Remove="Views\Post\EditPost.cshtml" />
-    <_ContentIncludedByDefault Remove="Views\Post\ListPosts.cshtml" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <UpToDateCheckInput Remove="Views\Post\ListPosts.cshtml" />
   </ItemGroup>
 
 </Project>
