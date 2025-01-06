@@ -22,6 +22,11 @@
 		<strong>Weight:</strong> @cat.Weight kg <br />
 
 
+		<form asp-controller="Barf" asp-action="ShowBarf" method="get">
+			<input type="hidden" name="catId" value="@cat.Id" />
+			<button type="submit">Calculate Barf</button>
+		</form>
+
 		<form asp-controller="Cat" asp-action="EditCat" method="get">
 			<input type="hidden" name="catId" value="@cat.Id" />
 			<button type="submit">Edit</button>

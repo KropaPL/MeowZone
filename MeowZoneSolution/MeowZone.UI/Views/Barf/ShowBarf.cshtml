@@ -1,0 +1,15 @@
+﻿@model BarfDietCalculationResult
+
+@{
+	ViewBag.Title = "Show Barf";
+	Layout = "_Layout";
+}
+
+
+<div class="welcome-text">Barf - macro</div>
+<div class="welcome-text">Daily intake for @Model.CatName (in kg)</div>
+<div class="small-welcome-text">Food intake: @Model.DailyFoodIntakeKg</div>
+<div class="small-welcome-text">Fibre intake: @Model.FibreIntakeKg</div>
+<div class="small-welcome-text">Fat intake: @Model.FatIntakeKg</div>
+<div class="small-welcome-text">Organ intake: @Model.OrganIntakeKg</div>
+<div class="small-welcome-text">Protein intake: @Model.ProteinIntakeKg</div>

@@ -14,8 +14,7 @@ namespace MeowZone.Core.DTO
 		public decimal DailyFoodIntakeKg { get; set; }
 		public decimal ProteinIntakeKg { get; set; }
 		public decimal FatIntakeKg { get; set; }
-		public decimal BoneIntakeKg { get; set; }
+		public decimal FibreIntakeKg { get; set; }
 		public decimal OrganIntakeKg { get; set; }
-		public string Supplements { get; set; }
 	}
 }
