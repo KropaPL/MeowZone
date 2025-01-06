@@ -9,6 +9,6 @@ namespace MeowZone.Core.ServiceContracts
 {
 	public interface IPostsAdderService
 	{
-		Task<PostResponse> AddPost(PostAddRequest? podAddRequest, Guid authorId, Guid categoryId);
+		Task<PostResponse> AddPost(PostAddRequest? postAddRequest, Guid authorId, Guid categoryId);
 	}
 }
