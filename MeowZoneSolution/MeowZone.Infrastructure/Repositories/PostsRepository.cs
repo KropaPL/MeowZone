@@ -63,6 +63,12 @@ namespace MeowZone.Infrastructure.Repositories
 			return await _db.Posts.Include("Post").ToListAsync();
 		}
 
+		public async Task<List<Post>> GetAllPostsAccordingToCategoryId(Guid id)
+		{
+			return await _db.Posts.Where(temp => temp.CategoryId == id).ToListAsync();
+		}
+
+
 		public async Task<Post?> GetPostById(Guid postId)
 		{
 			return await _db.Posts.Include("Post")

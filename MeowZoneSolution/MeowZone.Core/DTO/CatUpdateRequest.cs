@@ -32,18 +32,5 @@ namespace MeowZone.Core.DTO
 		[StringLength(30)]
 		public string? Color { get; set; }
 		public GenderOptions? Gender { get; set; }
-
-		public Cat ToCat()
-		{
-			return new Cat()
-			{
-				Name = Name,
-				Weight = Weight,
-				Age = Age,
-				Breed = Breed,
-				Color = Color,
-				Gender = Gender,
-			};
-		}
 	}
 }

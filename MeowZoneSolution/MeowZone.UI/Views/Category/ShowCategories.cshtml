@@ -15,12 +15,20 @@
 			@category.Description
 		</div>
 		<form asp-controller="Category" asp-action="EditCategory" method="get">
+			<input type="hidden" name="categoryId" value="@category.Id" />
 			<button type="submit">Edit</button>
 		</form>
 
 		<form method="post" asp-controller="Category" asp-action="DeleteCategory">
+			<input type="hidden" name="categoryId" value="@category.Id" />
 			<button type="submit" class="btn btn-danger">Delete</button>
 		</form>
+
+		<form method="get" asp-controller="Post" asp-action="ListPostsAccordingToCategory">
+			<input type="hidden" name="categoryId" value="@category.Id" />
+			<button type="submit" class="btn btn-danger">Go to posts</button>
+		</form>
+
 		<br />
 	</div>
 }

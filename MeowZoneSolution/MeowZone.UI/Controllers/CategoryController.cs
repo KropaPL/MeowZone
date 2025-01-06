@@ -47,13 +47,55 @@ namespace MeowZone.UI.Controllers
 			return RedirectToAction(nameof(ShowCategories));
 		}
 
-		public IActionResult DeleteCategory()
+		[HttpPost]
+		public async Task<IActionResult> DeleteCategory(Guid categoryId)
 		{
-			return View();
+			var category = await _categoryGetterService.GetCategoryByCategoryId(categoryId);
+			if (category == null)
+			{
+				return NotFound();
+			}
+
+			await _categoryDeleterService.DeleteCategory(categoryId);
+			return RedirectToAction(nameof(ShowCategories));
 		}
-		public IActionResult EditCategory()
+
+		[HttpGet]
+		public async Task<IActionResult> EditCategory(Guid categoryId)
 		{
-			return View();
+			var category = await _categoryGetterService.GetCategoryByCategoryId(categoryId);
+			if (category == null)
+			{
+				return NotFound();
+			}
+
+			var categoryUpdateRequest = new CategoryUpdateRequest()
+			{
+				Id = category.Id,
+				Name = category.Name,
+				Description = category.Description
+			};
+
+			return View(categoryUpdateRequest);
+		}
+
+		[HttpPost]
+		public async Task<IActionResult> EditCategory(CategoryUpdateRequest categoryUpdateRequest)
+		{
+			if (!ModelState.IsValid)
+			{
+				return View(categoryUpdateRequest);
+			}
+
+			var category = await _categoryGetterService.GetCategoryByCategoryId(categoryUpdateRequest.Id);
+			if (category == null)
+			{
+				return NotFound();
+			}
+
+			await _categoryUpdaterService.UpdateCategory(categoryUpdateRequest);
+
+			return RedirectToAction(nameof(ShowCategories));
 		}
 	}
 }

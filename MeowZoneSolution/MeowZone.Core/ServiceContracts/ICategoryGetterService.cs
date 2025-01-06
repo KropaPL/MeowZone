@@ -10,5 +10,6 @@ namespace MeowZone.Core.ServiceContracts
 	public interface ICategoryGetterService
 	{
 		Task<List<CategoryResponse>> GetAllCategories();
+		Task<CategoryResponse> GetCategoryByCategoryId(Guid id);
 	}
 }

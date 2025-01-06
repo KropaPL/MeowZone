@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MeowZone.Core.Domain.Entities;
 using MeowZone.Core.Domain.RepositoryContracts;
 using MeowZone.Core.DTO;
 using MeowZone.Core.ServiceContracts;
@@ -24,6 +25,23 @@ namespace MeowZone.Core.Services
 
 			return categories
 				.Select(temp => temp.ToCategoryResponse()).ToList();
+		}
+
+		public async Task<CategoryResponse> GetCategoryByCategoryId(Guid id)
+		{
+			if (id == null)
+			{
+				return null;
+			}
+
+			Category? category = await _categoriesRepository.GetCategoryByCategoryId(id);
+
+			if (category == null)
+			{
+				return null;
+			}
+
+			return category.ToCategoryResponse();
 		}
 	}
 }

@@ -23,6 +23,12 @@ namespace MeowZone.UI.Controllers
 			return View();
 		}
 
+		[HttpGet]
+		public async Task<IActionResult> ListPostsAccordingToCategory(Guid categoryId)
+		{
+			return View();
+		}
+
 		public IActionResult ListPosts()
 		{
 			return View();

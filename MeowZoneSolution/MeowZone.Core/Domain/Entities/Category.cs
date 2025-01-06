@@ -23,6 +23,7 @@ namespace MeowZone.Core.Domain.Entities
 		{
 			return new CategoryResponse()
 			{
+				Id = Id,
 				Name = Name,
 				Description = Description
 			};

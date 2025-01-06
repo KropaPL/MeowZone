@@ -35,6 +35,8 @@ namespace MeowZone.Core.Domain.RepositoryContracts
 		/// <returns></returns>
 		Task<List<Post>> GetAllPosts();
 
+
+		Task<List<Post>> GetAllPostsAccordingToCategoryId(Guid id);
 		/// <summary>
 		/// 
 		/// </summary>
