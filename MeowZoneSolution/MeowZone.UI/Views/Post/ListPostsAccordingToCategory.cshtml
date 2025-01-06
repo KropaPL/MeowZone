@@ -14,8 +14,8 @@
 {
 	<div>
 		<strong>@post.Title</strong>
-		<p>@post.AuthorName</p>
 		<p>@post.CreatedAt</p>
+		<p><strong>Author:</strong> @post.AuthorName</p>
 		<div>@post.Content</div>
 
 		<form asp-controller="Post" asp-action="EditPost" method="get">

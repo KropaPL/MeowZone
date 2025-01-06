@@ -32,10 +32,6 @@ namespace MeowZone.Core.Services
 
 			post.Id = Guid.NewGuid();
 			post.AuthorId = authorId;
-
-			var user = await _userManager.FindByIdAsync(post.AuthorId.ToString());
-
-			post.AuthorName = user?.UserName;
 			post.CategoryId = categoryId;
 			post.CreatedAt = DateTime.UtcNow;
 
