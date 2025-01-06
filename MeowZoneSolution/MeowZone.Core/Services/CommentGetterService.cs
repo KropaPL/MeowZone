@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MeowZone.Core.Domain.Entities;
 using MeowZone.Core.DTO;
 using MeowZone.Core.Domain.RepositoryContracts;
 
@@ -18,9 +19,11 @@ namespace MeowZone.Core.Services
 			_commentRepository = commentRepository;
 		}
 
-		public Task<List<CommentResponse>> getAllCommentbyPostId(Guid categoryId)
+		public async Task<List<CommentResponse>> getAllCommentbyPostId(Guid categoryId)
 		{
-			throw new NotImplementedException();
+			var comments = await _commentRepository.GetCommentsByPostId(categoryId);
+			return comments
+				.Select(temp => temp.ToCommentResponse()).ToList();
 		}
 
 		public Task<List<CommentResponse>> getAllComments()
@@ -28,9 +31,22 @@ namespace MeowZone.Core.Services
 			throw new NotImplementedException();
 		}
 
-		public Task<CommentResponse> GetCommentByCommentId(Guid? postId)
+
+		public async Task<CommentResponse> GetCommentByCommentId(Guid? commentId)
 		{
-			throw new NotImplementedException();
+			if (commentId == null)
+			{
+				return null;
+			}
+
+			Comment? comment = await _commentRepository.GetCommentByCommentId(commentId.Value);
+
+			if (comment == null)
+			{
+				return null;
+			}
+
+			return comment.ToCommentResponse();
 		}
 	}
 }

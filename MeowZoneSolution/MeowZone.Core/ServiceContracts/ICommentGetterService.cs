@@ -11,6 +11,6 @@ namespace MeowZone.Core.ServiceContracts
 	{
 		Task<List<CommentResponse>> getAllCommentbyPostId(Guid categoryId);
 		Task<List<CommentResponse>> getAllComments();
-		Task<CommentResponse> GetCommentByCommentId(Guid? postId);
+		Task<CommentResponse> GetCommentByCommentId(Guid? commentId);
 	}
 }
