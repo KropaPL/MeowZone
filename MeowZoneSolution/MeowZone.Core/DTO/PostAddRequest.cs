@@ -10,21 +10,11 @@ namespace MeowZone.Core.DTO
 {
 	public class PostAddRequest
 	{
-		[Required]
-		[StringLength(200, ErrorMessage = "Title cannot exceed 200 characters.")]
 		public string Title { get; set; }
-
-		[Required]
-		[MinLength(20, ErrorMessage = "Content must be at least 20 characters long.")]
 		public string Content { get; set; }
-
-		[Required]
 		public Guid CategoryId { get; set; }
+		public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
-		[StringLength(500, ErrorMessage = "Summary cannot exceed 500 characters.")]
-		public string Summary { get; set; }
-
-		public bool IsPublished { get; set; }
 
 		public Post ToPost()
 		{
@@ -33,8 +23,6 @@ namespace MeowZone.Core.DTO
 				Title = Title,
 				Content = Content,
 				CategoryId = CategoryId,
-				Summary = Summary,
-				IsPublished = IsPublished
 			};
 		}
 	}

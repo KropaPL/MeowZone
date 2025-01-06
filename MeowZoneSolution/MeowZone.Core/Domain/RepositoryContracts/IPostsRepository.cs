@@ -42,6 +42,6 @@ namespace MeowZone.Core.Domain.RepositoryContracts
 		/// </summary>
 		/// <param name="postId"></param>
 		/// <returns></returns>
-		Task<Post?> GetPostById(Guid postId);
+		Task<Post?> GetPostByPostId(Guid postId);
 	}
 }

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MeowZone.Core.Domain.IdentityEntities;
+using MeowZone.Core.DTO;
 
 namespace MeowZone.Core.Domain.Entities
 {
@@ -27,15 +28,20 @@ namespace MeowZone.Core.Domain.Entities
         [ForeignKey("Author")]
         public Guid AuthorId { get; set; }
 
-        public ApplicationUser Author { get; set; }
-
         [ForeignKey("Category")]
         public Guid CategoryId { get; set; }
-        public Category Category { get; set; }
 
-		[StringLength(500)]
-        public string Summary { get; set; }   
+        public PostResponse ToPostResponse()
+        {
+	        return new PostResponse()
+	        {
+                Id = Id,
+                AuthorId = AuthorId,
+                CategoryId = CategoryId,
+                Content = Content,
+                CreatedAt = CreatedAt,
 
-        public bool IsPublished { get; set; }
+	        };
+        }
     }
 }

@@ -39,8 +39,6 @@ namespace MeowZone.Infrastructure.Repositories
 
 			matchingPost.Title = post.Title;
 			matchingPost.Content = post.Content;
-			matchingPost.Summary = post.Summary;
-			matchingPost.IsPublished = post.IsPublished;
 			matchingPost.CategoryId = post.CategoryId;
 
 			_db.Posts.Update(matchingPost);
@@ -69,7 +67,7 @@ namespace MeowZone.Infrastructure.Repositories
 		}
 
 
-		public async Task<Post?> GetPostById(Guid postId)
+		public async Task<Post?> GetPostByPostId(Guid postId)
 		{
 			return await _db.Posts.Include("Post")
 				.FirstOrDefaultAsync(temp => temp.Id == postId);

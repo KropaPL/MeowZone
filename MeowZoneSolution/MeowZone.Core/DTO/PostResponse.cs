@@ -8,15 +8,11 @@ namespace MeowZone.Core.DTO
 {
 	public class PostResponse
 	{
-		public int Id { get; set; }
+		public Guid Id { get; set; }
 		public string Title { get; set; }
 		public string Content { get; set; }
-		public string Summary { get; set; }
 		public DateTime CreatedAt { get; set; }
 		public Guid AuthorId { get; set; }
-		public string AuthorName { get; set; }
 		public Guid CategoryId { get; set; }
-		public string CategoryName { get; set; }
-		public bool IsPublished { get; set; }
 	}
 }
