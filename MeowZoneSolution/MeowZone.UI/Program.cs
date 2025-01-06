@@ -4,6 +4,7 @@ using MeowZone.Core.ServiceContracts;
 using MeowZone.Core.Services;
 using MeowZone.Infrastructure.DbContext;
 using MeowZone.Infrastructure.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -34,8 +35,27 @@ namespace MeowZone
 	            .AddUserStore<UserStore<ApplicationUser, ApplicationRole, ApplicationDbContext, Guid>>()
 	            .AddRoleStore<RoleStore<ApplicationRole, ApplicationDbContext, Guid>>();
 
-            // Repositories
-            builder.Services.AddScoped<ICatsRepository, CatsRepository>();
+
+            builder.Services.AddAuthorization(options =>
+            {
+	            options.FallbackPolicy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build(); //enforces authoriation policy (user must be authenticated) for all the action methods
+
+	            options.AddPolicy("NotAuthorized", policy =>
+	            {
+		            policy.RequireAssertion(context =>
+		            {
+			            return !context.User.Identity.IsAuthenticated;
+		            });
+	            });
+            });
+
+            builder.Services.ConfigureApplicationCookie(options => {
+	            options.LoginPath = "/Account/Login";
+            });
+
+
+			// Repositories
+			builder.Services.AddScoped<ICatsRepository, CatsRepository>();
             builder.Services.AddScoped<ICategoriesRepository, CategoriesRepository>();
             builder.Services.AddScoped<IPostsRepository, PostsRepository>();
             builder.Services.AddScoped<ICommentRepository, CommentsRepository>();

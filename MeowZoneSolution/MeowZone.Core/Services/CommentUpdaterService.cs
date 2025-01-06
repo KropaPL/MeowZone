@@ -18,7 +18,7 @@ namespace MeowZone.Core.Services
 		{
 			_commentRepository = commentRepository;
 		}
-		public async Task<CommentResponse> UpdatePost(CommentUpdateRequest? commentUpdateRequest)
+		public async Task<CommentResponse> UpdateComment(CommentUpdateRequest? commentUpdateRequest)
 		{
 			if (commentUpdateRequest == null)
 			{

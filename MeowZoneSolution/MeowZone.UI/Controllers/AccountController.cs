@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace MeowZone.Controllers
 {
 	[Route("[controller]/[action]")]
+	[AllowAnonymous]
 	public class AccountController : Controller
 	{
 		private readonly UserManager<ApplicationUser> _userManager;

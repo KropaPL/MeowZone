@@ -4,15 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MeowZone.Core.Domain.Entities;
+using MeowZone.Core.Domain.IdentityEntities;
 using MeowZone.Core.Domain.RepositoryContracts;
 using MeowZone.Core.DTO;
 using MeowZone.Core.ServiceContracts;
+using Microsoft.AspNetCore.Identity;
 
 namespace MeowZone.Core.Services
 {
 	public class PostsAdderService : IPostsAdderService
 	{
 		private readonly IPostsRepository _postsRepository;
+		private readonly UserManager<ApplicationUser> _userManager;
 
 		public PostsAdderService(IPostsRepository postsRepository)
 		{
@@ -29,6 +32,10 @@ namespace MeowZone.Core.Services
 
 			post.Id = Guid.NewGuid();
 			post.AuthorId = authorId;
+
+			var user = await _userManager.FindByIdAsync(post.AuthorId.ToString());
+
+			post.AuthorName = user?.UserName;
 			post.CategoryId = categoryId;
 			post.CreatedAt = DateTime.UtcNow;
 

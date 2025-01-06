@@ -9,6 +9,6 @@ namespace MeowZone.Core.ServiceContracts
 {
 	public interface ICommentUpdaterService
 	{
-		Task<CommentResponse> UpdatePost(CommentUpdateRequest? commentUpdateRequest);
+		Task<CommentResponse> UpdateComment(CommentUpdateRequest? commentUpdateRequest);
 	}
 }

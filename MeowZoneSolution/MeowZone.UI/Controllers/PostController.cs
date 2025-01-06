@@ -110,10 +110,6 @@ namespace MeowZone.UI.Controllers
 			return RedirectToAction(nameof(ListPostsAccordingToCategory), "Post", new { categoryId = categoryId });
 		}
 
-		public IActionResult ShowPostWithComments()
-		{
-			return View();
-		}
 
 		[HttpGet]
 		public async Task<IActionResult> ListPostsAccordingToCategory(Guid categoryId)
@@ -121,6 +117,13 @@ namespace MeowZone.UI.Controllers
 			var posts = await _postsGetterService.getAllPostsbyCategoryId(categoryId);
 			posts = posts.OrderBy(temp => temp.CreatedAt).ToList();
 			var categoryResponse = (await _categoryGetterService.GetCategoryByCategoryId(categoryId));
+
+			foreach (var post in posts)
+			{
+				var user = await _userManager.FindByIdAsync(post.AuthorId.ToString());
+				post.AuthorName = user?.UserName ?? "Unknown";  // Fallback if user not found
+			}
+
 			ViewBag.Category = categoryResponse.Name;
 			ViewBag.CategoryId = categoryId;
 

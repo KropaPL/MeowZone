@@ -37,6 +37,20 @@
 		<div>
 			@comment.CommentContent
 		</div>
+		<form method="post" asp-controller="Comment" asp-action="DeleteComment">
+			<input type="hidden" name="postId" value="@Model.PostId" />
+			<input type="hidden" name="commentId" value="@comment.Id" />
+			<button type="submit" class="btn btn-danger">Delete</button>
+		</form>
+
+		<form method="get" asp-controller="Comment" asp-action="EditComment">
+			<input type="hidden" name="postId" value="@Model.PostId" />
+			<input type="hidden" name="commentId" value="@comment.Id" />
+			<input type="hidden" name="AuthorId" value="@comment.AuthorId" />
+			<button type="submit" class="btn btn-danger">Edit</button>
+		</form>
+
+
 		<br/>
 	}
 }

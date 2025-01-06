@@ -5,7 +5,11 @@
  
 <div class="welcome-text">Categories</div>
 
-<a asp-controller="Category" asp-action="CreateCategory">Create Category</a>
+@if (User.IsInRole("Admin"))
+{
+	<a asp-controller="Category" asp-action="CreateCategory">Create Category</a>
+}
+
 
 @foreach (var category in Model)
 {
@@ -14,15 +18,19 @@
 		<div>
 			@category.Description
 		</div>
-		<form asp-controller="Category" asp-action="EditCategory" method="get">
-			<input type="hidden" name="categoryId" value="@category.Id" />
-			<button type="submit">Edit</button>
-		</form>
+		
+		@if (User.IsInRole("Admin"))
+		{
+			<form asp-controller="Category" asp-action="EditCategory" method="get">
+				<input type="hidden" name="categoryId" value="@category.Id" />
+				<button type="submit">Edit</button>
+			</form>
 
-		<form method="post" asp-controller="Category" asp-action="DeleteCategory">
-			<input type="hidden" name="categoryId" value="@category.Id" />
-			<button type="submit" class="btn btn-danger">Delete</button>
-		</form>
+			<form method="post" asp-controller="Category" asp-action="DeleteCategory">
+				<input type="hidden" name="categoryId" value="@category.Id" />
+				<button type="submit" class="btn btn-danger">Delete</button>
+			</form>
+		}
 
 		<form method="get" asp-controller="Post" asp-action="ListPostsAccordingToCategory">
 			<input type="hidden" name="categoryId" value="@category.Id" />

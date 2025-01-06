@@ -1,4 +1,5 @@
-﻿using MeowZone.Core.Domain.IdentityEntities;
+﻿using MeowZone.Core.Domain.Entities;
+using MeowZone.Core.Domain.IdentityEntities;
 using MeowZone.Core.DTO;
 using MeowZone.Core.ServiceContracts;
 using Microsoft.AspNetCore.Identity;
@@ -28,6 +29,57 @@ namespace MeowZone.UI.Controllers
 			_userManager = userManager;
 		}
 
+		[HttpGet]
+		public async Task<IActionResult> EditComment(Guid commentId, Guid postId)
+		{
+			@ViewBag.postId = postId;
+
+			var comment = await _commentGetterService.GetCommentByCommentId(commentId);
+			if (comment == null)
+			{
+				return NotFound();
+			}
+
+			var commentUpdateRequest = new CommentUpdateRequest()
+			{
+				Id = comment.Id,
+				CommentContent = comment.CommentContent
+			};
+
+			return View(commentUpdateRequest);
+		}
+
+		[HttpPost]
+		public async Task<IActionResult> EditComment(CommentUpdateRequest commentUpdateRequest, Guid postId)
+		{
+			if (!ModelState.IsValid)
+			{
+				return View(commentUpdateRequest);
+			}
+
+			var comment = await _commentGetterService.GetCommentByCommentId(commentUpdateRequest.Id);
+			if (comment == null)
+			{
+				return NotFound();
+			}
+
+			await _commentUpdaterService.UpdateComment(commentUpdateRequest);
+
+		return RedirectToAction(nameof(GoToComments), "Comment", new { id = postId });
+	}
+
+		[HttpPost]
+		public async Task<IActionResult> DeleteComment(Guid commentId, Guid postId)
+		{
+			var comment = await _commentGetterService.GetCommentByCommentId(commentId);
+			if (comment == null)
+			{
+				return NotFound();
+			}
+
+			await _commentDeleterService.DeleteComment(commentId);
+			return RedirectToAction(nameof(GoToComments), "Comment", new { id = postId});
+		}
 
 		[HttpPost]
 		public async Task<IActionResult> AddComment(CommentAddRequest commentAddRequest)
