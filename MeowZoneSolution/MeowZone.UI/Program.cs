@@ -1,5 +1,8 @@
 using MeowZone.Core.Domain.IdentityEntities;
+using MeowZone.Core.Domain.RepositoryContracts;
+using MeowZone.Core.ServiceContracts;
 using MeowZone.Infrastructure.DbContext;
+using MeowZone.Infrastructure.Repositories;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -29,6 +32,8 @@ namespace MeowZone
 	            .AddDefaultTokenProviders()
 	            .AddUserStore<UserStore<ApplicationUser, ApplicationRole, ApplicationDbContext, Guid>>()
 	            .AddRoleStore<RoleStore<ApplicationRole, ApplicationDbContext, Guid>>();
+
+            builder.Services.AddScoped<ICatRepository, CatRepository>();
 
 
             var app = builder.Build();

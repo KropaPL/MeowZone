@@ -28,7 +28,7 @@ namespace MeowZone.Core.Domain.RepositoryContracts
 		/// </summary>
 		/// <param name="catId">CatID (guid) to delete</param>
 		/// <returns>Return true if the deletion is successful; otherwise, return false.</returns>
-		Task<Cat> DeleteCat(Guid catId);
+		Task<bool> DeleteCat(Guid catId);
 
         /// <summary>
         /// Returns a cat object based on the given cat id 

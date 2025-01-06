@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using MeowZone.Core.Domain.IdentityEntities;
+using MeowZone.Core.DTO;
 
 namespace MeowZone.Models
 {
@@ -33,6 +34,21 @@ namespace MeowZone.Models
         [ForeignKey("Owner")]
         public Guid OwnerId { get; set; }
         public ApplicationUser Owner { get; set; }
-		public GenderOptions? Gender { get; set; } 
-    }
+		public GenderOptions? Gender { get; set; }
+
+		public CatResponse ToCatResponse()
+		{
+			return new CatResponse()
+			{
+				Age = this.Age,
+				Breed = this.Breed,
+				Gender = this.Gender,
+				Name = this.Name,
+				Weight = this.Weight,
+				Id = this.Id,
+				Color = this.Color
+			};
+		}
+
+	}
 }
