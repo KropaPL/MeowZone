@@ -1,0 +1,55 @@
+﻿@model LoginDTO
+
+@{
+	ViewBag.Title = "Login";
+	Layout = "_Layout";
+}
+
+<div class="welcome-text">Login</div>
+
+<form asp-controller="Account" asp-action="Login" method="post">
+	@*UserName*@
+	<div>
+		<div>
+			<label asp-for="UserName">Username</label>
+		</div>
+		<div>
+			<input asp-for="UserName" />
+			<span asp-validation-for="UserName"></span>
+		</div>
+	</div>
+
+	@*Password*@
+	<div>
+		<div>
+			<label asp-for="Password">Password</label>
+		</div>
+		<div>
+			<input asp-for="Password" />
+			<span asp-validation-for="Password"></span>
+		</div>
+	</div>
+
+
+	@*Login button*@
+	<div>
+	<div></div>
+	<div>
+		<button type="submit">Login</button>
+
+		<div asp-validation-summary="All"></div>
+
+		@if (ViewBag.Errors != null)
+		{
+			<div>
+				<ul>
+					@foreach (string error in ViewBag.Errors)
+					{
+						<li>@error</li>
+					}
+				</ul>
+			</div>
+		}
+	</div>
+	</div>
+</form>

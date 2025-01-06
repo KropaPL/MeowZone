@@ -88,5 +88,42 @@ namespace MeowZone.Controllers
 			await _signInManager.SignOutAsync();
 			return RedirectToAction(nameof(HomeController.Index), "Home");
 		}
+
+		[HttpGet]
+		public IActionResult Login()
+		{
+			return View();
+		}
+
+		[HttpPost]
+		public async Task<IActionResult> Login(LoginDTO loginDto)
+		{
+			if (!ModelState.IsValid)
+			{
+				ViewBag.Errors = ModelState.Values.SelectMany(temp => temp.Errors).Select(temp => temp.ErrorMessage);
+				return View(loginDto);
+			}
+
+			var result = await _signInManager.PasswordSignInAsync(loginDto.UserName, loginDto.Password, false, false);
+
+			if (result.Succeeded)
+			{
+				//Admin
+				ApplicationUser user = await _userManager.FindByEmailAsync(loginDto.UserName);
+				if (user != null)
+				{
+					if (await _userManager.IsInRoleAsync(user, UserTypeOptions.Admin.ToString()))
+					{
+						return RedirectToAction("Index", "Home");
+					}
+				}
+
+				return RedirectToAction(nameof(HomeController.Index), "Home");
+			}
+
+			ModelState.AddModelError("Login", "Invalid email or password");
+
+			return View(loginDto);
+		}
 	}
 }
