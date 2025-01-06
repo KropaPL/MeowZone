@@ -18,16 +18,26 @@
 		<p><strong>Author:</strong> @post.AuthorName</p>
 		<div>@post.Content</div>
 
-		<form asp-controller="Post" asp-action="EditPost" method="get">
-			<input type="hidden" name="postId" value="@post.Id" />
-			<button type="submit">Edit</button>
-		</form>
+		
+		
+		@if(User.IsInRole("Admin")){
+			<form asp-controller="Post" asp-action="EditPost" method="get">
+				<input type="hidden" name="postId" value="@post.Id" />
+				<button type="submit">Edit</button>
+			</form>
 
-		<form method="post" asp-controller="Post" asp-action="DeletePost">
-			<input type="hidden" name="postId" value="@post.Id" />
-			<input type="hidden" name="categoryId" value="@post.CategoryId" />
-			<button type="submit" class="btn btn-danger">Delete</button>
-		</form>
+			<form asp-controller="Post" asp-action="EditPost" method="get">
+				<input type="hidden" name="postId" value="@post.Id" />
+				<button type="submit">Edit</button>
+			</form>
+
+			<form method="post" asp-controller="Post" asp-action="DeletePost">
+				<input type="hidden" name="postId" value="@post.Id" />
+				<input type="hidden" name="categoryId" value="@post.CategoryId" />
+				<button type="submit" class="btn btn-danger">Delete</button>
+			</form>
+		}
+		
 
 		<form method="get" asp-controller="Comment" asp-action="GoToComments">
 			<input type="hidden" name="Id" value="@post.Id" />
