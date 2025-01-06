@@ -52,6 +52,13 @@ namespace MeowZone
             builder.Services.AddScoped<ICategoryUpdaterService, CategoriesUpdaterService>();
             builder.Services.AddScoped<ICategoryGetterService, CategoriesGetterService>();
 
+            // Posts Services
+            builder.Services.AddScoped<IPostsAdderService, PostsAdderService>();
+            builder.Services.AddScoped<IPostsDeleterService, PostsDeleterService>();
+            builder.Services.AddScoped<IPostsUpdaterService, PostsUpdaterService>();
+            builder.Services.AddScoped<IPostsGetterService, PostsGetterService>();
+
+
             var app = builder.Build();
 
 
