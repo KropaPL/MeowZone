@@ -7,7 +7,7 @@ using MeowZone.Core.Domain.Entities;
 
 namespace MeowZone.Core.Domain.RepositoryContracts
 {
-	public interface IPostRepository
+	public interface IPostsRepository
 	{
 		/// <summary>
 		/// Adds a post object to the database

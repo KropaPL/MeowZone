@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MeowZone.Infrastructure.Repositories
 {
-	public class PostsRepository : IPostRepository
+	public class PostsRepository : IPostsRepository
 	{
 		private readonly ApplicationDbContext _db;
 

@@ -8,7 +8,7 @@ using MeowZone.Core.Domain.Entities;
 
 namespace MeowZone.Core.Domain.RepositoryContracts
 {
-	internal interface ICategoryRepository
+	public interface ICategoriesRepository
 	{
 		/// <summary>
 		/// Adds category to the database
@@ -30,7 +30,7 @@ namespace MeowZone.Core.Domain.RepositoryContracts
 		/// </summary>
 		/// <param name="categoryId">CategoryID (guid) to delete</param>
 		/// <returns>Returns true if the deletion is successful; otherwise, return false.</returns>
-		Task<Category> DeleteCategory(Guid categoryId);
+		Task<bool> DeleteCategory(Guid categoryId);
 
 
 		/// <summary>
