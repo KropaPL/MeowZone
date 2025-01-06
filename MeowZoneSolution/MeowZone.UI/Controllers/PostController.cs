@@ -1,10 +1,19 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using MeowZone.Core.Domain.IdentityEntities;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 
 namespace MeowZone.UI.Controllers
 {
 	public class PostController : Controller
 	{
-		public IActionResult CreatePost()
+
+		private readonly UserManager<ApplicationUser> _userManager;
+
+		public PostController(UserManager<ApplicationUser> userManager)
+		{
+			_userManager = userManager;
+		}
+		public IActionResult CreatePost(Guid categoryId)
 		{
 			return View();
 		}
@@ -13,10 +22,11 @@ namespace MeowZone.UI.Controllers
 			return View();
 		}
 
+		[HttpPost]
 		public IActionResult DeletePost()
 		{
 			return View();
-		}
+		} 
 
 		public IActionResult ShowPost()
 		{
