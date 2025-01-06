@@ -5,9 +5,11 @@
 	ViewBag.Title = "Your Cats";
 }
 
-<a asp-controller="Cat" asp-action="CreateCat">Create cat</a>
 
 <div class="welcome-text">Your Cats!</div>
+
+<a asp-controller="Cat" asp-action="CreateCat">Create cat</a>
+<br />
 
 @foreach (var cat in Model)
 {

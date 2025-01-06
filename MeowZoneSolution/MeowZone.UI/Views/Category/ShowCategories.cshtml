@@ -1,8 +1,26 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model List<CategoryResponse>
 @{
 	ViewBag.Title = "Categories Page";
 }
  
 <div class="welcome-text">Categories</div>
+
+<a asp-controller="Category" asp-action="CreateCategory">Create Category</a>
+
+@foreach (var category in Model)
+{
+	<div>
+		<strong>@category.Name</strong>
+		<div>
+			@category.Description
+		</div>
+		<form asp-controller="Category" asp-action="EditCategory" method="get">
+			<button type="submit">Edit</button>
+		</form>
+
+		<form method="post" asp-controller="Category" asp-action="DeleteCategory">
+			<button type="submit" class="btn btn-danger">Delete</button>
+		</form>
+		<br />
+	</div>
+}

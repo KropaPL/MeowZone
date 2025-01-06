@@ -17,7 +17,6 @@ namespace MeowZone.Core.DTO
 		public string AuthorName { get; set; }
 		public Guid CategoryId { get; set; }
 		public string CategoryName { get; set; }
-		public int ViewCount { get; set; }
 		public bool IsPublished { get; set; }
 	}
 }

@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MeowZone.Core.Domain.Entities;
 
 namespace MeowZone.Core.DTO
 {
@@ -11,5 +12,14 @@ namespace MeowZone.Core.DTO
 	{
 		public string Name { get; set; }
 		public string Description { get; set; }
+
+		public Category ToCategory()
+		{
+			return new Category()
+			{
+				Name = Name,
+				Description = Description
+			};
+		}
 	}
 }

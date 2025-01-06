@@ -35,13 +35,20 @@ namespace MeowZone
 	            .AddRoleStore<RoleStore<ApplicationRole, ApplicationDbContext, Guid>>();
 
             builder.Services.AddScoped<ICatsRepository, CatsRepository>();
+            builder.Services.AddScoped<ICategoriesRepository, CategoriesRepository>();
 
+
+            // Cats Services
             builder.Services.AddScoped<ICatsAdderService, CatsAdderService>();
             builder.Services.AddScoped<ICatsDeleterService, CatsDeleterService>();
             builder.Services.AddScoped<ICatsGetterService, CatsGetterService>();
             builder.Services.AddScoped<ICatsUpdaterService, CatsUpdaterService>();
 
-
+            // Categories Services
+            builder.Services.AddScoped<ICategoryAdderService, CategoriesAdderService>();
+            builder.Services.AddScoped<ICategoryDeleterService, CategoriesDeleterService>();
+            builder.Services.AddScoped<ICategoryUpdaterService, CategoriesUpdaterService>();
+            builder.Services.AddScoped<ICategoryGetterService, CategoriesGetterService>();
 
             var app = builder.Build();
 
