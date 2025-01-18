@@ -24,7 +24,6 @@ namespace MeowZone.Core.Services
 			decimal boneIntakeKg = dailyFoodIntakeKg * BonePercentage / 100;
 			decimal organIntakeKg = dailyFoodIntakeKg * OrganPercentage / 100;
 
-			// Return the result
 			return new BarfDietCalculationResult
 			{
 				CatId = cat.Id,
@@ -38,7 +37,6 @@ namespace MeowZone.Core.Services
 
 		}
 
-		// Method to calculate raw food intake based on the cat's weight
 		private decimal CalculateRawFoodIntake(decimal catWeight)
 		{
 			decimal foodIntakePercentage = 0.06m; 

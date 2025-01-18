@@ -78,7 +78,7 @@ namespace MeowZone
             builder.Services.AddScoped<IPostsDeleterService, PostsDeleterService>();
             builder.Services.AddScoped<IPostsUpdaterService, PostsUpdaterService>();
             builder.Services.AddScoped<IPostsGetterService, PostsGetterService>();
-
+            
             // Comment Services 
             builder.Services.AddScoped<ICommentAdderService, CommentAdderService>();
             builder.Services.AddScoped<ICommentDeleterService, CommentDeleterService>();
