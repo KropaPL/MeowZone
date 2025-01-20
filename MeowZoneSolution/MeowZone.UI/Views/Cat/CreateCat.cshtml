@@ -1,50 +1,60 @@
 ﻿@model MeowZone.Core.DTO.CatAddRequest
 
-<h2>Add a New Cat</h2>
+<div class="welcome-text">
+	Add a New Cat
+</div>
 
-<form asp-controller="Cat" asp-action="CreateCat" method="post">
 
-	<div class="form-group">
-		<label asp-for="Name" class="control-label">Name</label>
-		<input asp-for="Name" class="form-control" />
-		<span asp-validation-for="Name" class="text-danger"></span>
-	</div>
 
-	<div class="form-group">
-		<label asp-for="Weight" class="control-label">Weight (kg)</label>
-		<input asp-for="Weight" class="form-control" type="number" step="0.1" />
-		<span asp-validation-for="Weight" class="text-danger"></span>
-	</div>
+<div class="center-container">
+	<form asp-controller="Cat" asp-action="CreateCat" method="post">
 
-	<div class="form-group">
-		<label asp-for="Age" class="control-label">Age</label>
-		<input asp-for="Age" class="form-control" type="number" />
-		<span asp-validation-for="Age" class="text-danger"></span>
-	</div>
+		<div class="form-group">
+			<label asp-for="Name" class="control-label">Name</label>
+			<input asp-for="Name" class="input-text" />
+			<span asp-validation-for="Name" class="text-danger"></span>
+		</div>
 
-	<div class="form-group">
-		<label asp-for="Breed" class="control-label">Breed</label>
-		<input asp-for="Breed" class="form-control" />
-		<span asp-validation-for="Breed" class="text-danger"></span>
-	</div>
+		<div class="form-group">
+			<label asp-for="Weight" class="control-label">Weight (kg)</label>
+			<input asp-for="Weight" class="input-text" type="number" step="0.1" />
+			<span asp-validation-for="Weight" class="text-danger"></span>
+		</div>
 
-	<div class="form-group">
-		<label asp-for="Color" class="control-label">Color</label>
-		<input asp-for="Color" class="form-control" />
-		<span asp-validation-for="Color" class="text-danger"></span>
-	</div>
+		<div class="form-group">
+			<label asp-for="Age" class="control-label">Age</label>
+			<input asp-for="Age" class="input-text" type="number" />
+			<span asp-validation-for="Age" class="text-danger"></span>
+		</div>
 
-	<div class="form-group">
-		<label asp-for="Gender" class="control-label">Gender</label>
-		<select asp-for="Gender" asp-items="Html.GetEnumSelectList<MeowZone.Enums.GenderOptions>()" class="form-control">
-			<option value="">Select Gender</option>
-		</select>
-		<span asp-validation-for="Gender" class="text-danger"></span>
-	</div>
+		<div class="form-group">
+			<label asp-for="Breed" class="control-label">Breed</label>
+			<input asp-for="Breed" class="input-text" />
+			<span asp-validation-for="Breed" class="text-danger"></span>
+		</div>
 
-	<div class="form-group mt-3">
-		<button type="submit" class="btn btn-primary">Add Cat</button>
-	</div>
-</form>
+		<div class="form-group">
+			<label asp-for="Color" class="control-label">Color</label>
+			<input asp-for="Color" class="input-text" />
+			<span asp-validation-for="Color" class="text-danger"></span>
+		</div>
 
-<a href="@Url.Action("ShowCats")" class="btn btn-secondary">Cancel</a>
+		<div class="form-group">
+			<label asp-for="Gender" class="control-label">Gender</label>
+			<select asp-for="Gender" asp-items="Html.GetEnumSelectList<MeowZone.Enums.GenderOptions>()" class="input-text">
+				<option value="">Select Gender</option>
+			</select>
+			<span asp-validation-for="Gender" class="text-danger"></span>
+		</div>
+	
+		<div class="btn-container">
+			<div class="form-group mt-3">
+				<button type="submit" class="btn btn-primary">Add Cat</button>
+				<a href="@Url.Action("ShowCats")" class="btn btn-secondary">Cancel</a>
+			</div>
+		</div>
+
+	</form>
+</div>
+
+

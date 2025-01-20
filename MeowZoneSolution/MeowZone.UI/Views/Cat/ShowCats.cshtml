@@ -8,34 +8,41 @@
 
 <div class="welcome-text">Your Cats!</div>
 
-<a asp-controller="Cat" asp-action="CreateCat">Create cat</a>
+<a asp-controller="Cat" asp-action="CreateCat" class="btn btn-primary">Create cat</a>
 <br />
 
-@foreach (var cat in Model)
-{
-	<div>
-		<strong>Name:</strong> @cat.Name <br />
-		<strong>Age:</strong> @cat.Age <br />
-		<strong>Breed:</strong> @cat.Breed <br />
-		<strong>Color:</strong> @cat.Color <br />
-		<strong>Gender:</strong> @cat.Gender <br />
-		<strong>Weight:</strong> @cat.Weight kg <br />
+<div class="blocks-container">
+	@foreach (var cat in Model)
+	{
+		<div class="post-block">
+			<strong>Name:</strong> @cat.Name <br />
+			<strong>Age:</strong> @cat.Age <br />
+			<strong>Breed:</strong> @cat.Breed <br />
+			<strong>Color:</strong> @cat.Color <br />
+			<strong>Gender:</strong> @cat.Gender <br />
+			<strong>Weight:</strong> @cat.Weight kg <br />
+			
+			
+			<div class="btn-container">
+				<form asp-controller="Barf" asp-action="ShowBarf" method="get">
+					<input type="hidden" name="catId" value="@cat.Id" />
+					<button type="submit" class="btn">Calculate Barf</button>
+				</form>
+
+				<form asp-controller="Cat" asp-action="EditCat" method="get">
+					<input type="hidden" name="catId" value="@cat.Id" />
+					<button type="submit" class="btn">Edit</button>
+				</form>
+
+				<form method="post" asp-controller="Cat" asp-action="DeleteCat">
+					<input type="hidden" name="catId" value="@cat.Id" />
+					<button type="submit" class="btn btn-danger">Delete</button>
+				</form>
+			</div>
 
 
-		<form asp-controller="Barf" asp-action="ShowBarf" method="get">
-			<input type="hidden" name="catId" value="@cat.Id" />
-			<button type="submit">Calculate Barf</button>
-		</form>
+		</div>
+	}
+</div>
 
-		<form asp-controller="Cat" asp-action="EditCat" method="get">
-			<input type="hidden" name="catId" value="@cat.Id" />
-			<button type="submit">Edit</button>
-		</form>
 
-		<form method="post" asp-controller="Cat" asp-action="DeleteCat">
-			<input type="hidden" name="catId" value="@cat.Id" />
-			<button type="submit" class="btn btn-danger">Delete</button>
-		</form>
-		<br />
-	</div>
-}

@@ -22,52 +22,60 @@
 	@ViewBag.Content
 </div>
 
-<div class="small-welcome-text">
-	Add comment
+
+<div class="comment-container">
+	@{
+		foreach (var comment in comments)
+		{
+			<div class="comment-block">
+			
+				<div>
+					<b>Author:</b> @comment.AuthorName
+				</div>
+				<div>
+					<b>Created At:</b> @comment.CreatedAt
+				</div>
+				<div>
+					@comment.CommentContent
+				</div>
+
+				<div class="btn-container">
+					@if (User.IsInRole("Admin") || comment.AuthorId.ToString() == currentUserId)
+					{
+						<form method="post" asp-controller="Comment" asp-action="DeleteComment">
+							<input type="hidden" name="postId" value="@Model.PostId" />
+							<input type="hidden" name="commentId" value="@comment.Id" />
+							<button type="submit" class="btn btn-danger">Delete</button>
+						</form>
+
+						<form method="get" asp-controller="Comment" asp-action="EditComment">
+							<input type="hidden" name="postId" value="@Model.PostId" />
+							<input type="hidden" name="commentId" value="@comment.Id" />
+							<input type="hidden" name="AuthorId" value="@comment.AuthorId" />
+							<button type="submit" class="btn btn-danger">Edit</button>
+						</form>
+					}
+				</div>
+
+			</div>
+			
+		}
+	}
+
 </div>
 
-@{
-	foreach (var comment in comments)
-	{
-		<div>
-			@comment.AuthorName
-		</div>
-		<div>
-			@comment.CreatedAt
-		</div>
-		<div>
-			@comment.CommentContent
-		</div>
 
-		@if (User.IsInRole("Admin") || comment.AuthorId.ToString() == currentUserId)
-		{
-			<form method="post" asp-controller="Comment" asp-action="DeleteComment">
-				<input type="hidden" name="postId" value="@Model.PostId" />
-				<input type="hidden" name="commentId" value="@comment.Id" />
-				<button type="submit" class="btn btn-danger">Delete</button>
-			</form>
 
-			<form method="get" asp-controller="Comment" asp-action="EditComment">
-				<input type="hidden" name="postId" value="@Model.PostId" />
-				<input type="hidden" name="commentId" value="@comment.Id" />
-				<input type="hidden" name="AuthorId" value="@comment.AuthorId" />
-				<button type="submit" class="btn btn-danger">Edit</button>
-			</form>
-		}
-
+<div class="center-container">
+	<form asp-controller="Comment" asp-action="AddComment" method="post">
+			<label asp-for="CommentContent" class="control-label">Comment</label>
+			<input asp-for="CommentContent" class="comment-input"/>
+			<span asp-validation-for="CommentContent" class="text-danger"></span>
+		<input type="hidden" asp-for="PostId"/>
 		
-
-
-		<br/>
-	}
-}
-
-<form asp-controller="Comment" asp-action="AddComment" method="post">
-	<div class="form-group">
-		<label asp-for="CommentContent" class="control-label">Comment</label>
-		<input asp-for="CommentContent" class="form-control" />
-		<span asp-validation-for="CommentContent" class="text-danger"></span>
-	</div>
-	<input type="hidden" asp-for="PostId" />
-	<button type="submit" class="btn btn-primary">Add Comment</button>
-</form>
+		<div class="button-container-centered">
+			<button type="submit" class="btn btn-primary">Add Comment</button>
+		</div>
+		
+	</form>
+</div>

@@ -6,89 +6,91 @@
 }
 
 <div class="welcome-text">Register</div>
-
-<form asp-controller="Account" asp-action="Register" method="post">
+<div class="center-container">
+	<form asp-controller="Account" asp-action="Register" method="post">
 	
-	@*UserName*@
-	<div>
+		@*UserName*@
 		<div>
-			<label asp-for="UserName" class="">Name</label>
+			<div>
+				<label asp-for="UserName" class="">Name</label>
+			</div>
+			<div>
+				<input asp-for="UserName" class="input-text" />
+				<span asp-validation-for="UserName"></span>
+			</div>
 		</div>
-		<div>
-			<input asp-for="UserName" class=""/>
-			<span asp-validation-for="UserName"></span>
-		</div>
-	</div>
 	
-	@*Email*@
-	<div>
+		@*Email*@
 		<div>
-			<label asp-for="Email" class="">Email</label>
+			<div>
+				<label asp-for="Email" class="">Email</label>
+			</div>
+			<div>
+				<input asp-for="Email" class="input-text" />
+				<span asp-validation-for="Email"></span>
+			</div>
 		</div>
-		<div>
-			<input asp-for="Email" class="" />
-			<span asp-validation-for="Email"></span>
-		</div>
-	</div>
 	
-	@*Password*@
-	<div>
+		@*Password*@
 		<div>
-			<label asp-for="Password" class="">Password</label>
+			<div>
+				<label asp-for="Password" class="">Password</label>
+			</div>
+			<div>
+				<input asp-for="Password" class="input-text" />
+				<span asp-validation-for="Password"></span>
+			</div>
 		</div>
-		<div>
-			<input asp-for="Password" class="" />
-			<span asp-validation-for="Password"></span>
-		</div>
-	</div>
 	
-	@*ConfirmPassword*@
-	<div>
+		@*ConfirmPassword*@
 		<div>
-			<label asp-for="ConfirmPassword" class="">ConfirmPassword</label>
+			<div>
+				<label asp-for="ConfirmPassword" class="">ConfirmPassword</label>
+			</div>
+			<div>
+				<input asp-for="ConfirmPassword" class="input-text" />
+				<span asp-validation-for="ConfirmPassword"></span>
+			</div>
 		</div>
-		<div>
-			<input asp-for="ConfirmPassword" class="" />
-			<span asp-validation-for="ConfirmPassword"></span>
-		</div>
-	</div>
 	
 	
-	@*User Type*@
-	<div>
+		@*User Type*@
 		<div>
-			<label asp-for="UserType">User Type</label>
-		</div>
-		<div>
-			<input type="radio" id="User" asp-for="UserType" value="User" checked/>
-			<label for="User">User</label>
+			<div>
+				<label asp-for="UserType">User Type</label>
+			</div>
+			<div>
+				<input type="radio" id="User" asp-for="UserType" value="User" checked/>
+				<label for="User">User</label>
 			
-			<input type="radio" id="Admin" asp-for="UserType" value="Admin" />
-			<label for="Admin">Admin</label>
+				<input type="radio" id="Admin" asp-for="UserType" value="Admin" />
+				<label for="Admin">Admin</label>
+			</div>
 		</div>
-	</div>
 	
-	@*Register button*@
-	<div>
-		<div></div>
+		@*Register button*@
 		<div>
-			<button type="submit">Register</button>
+			<div></div>
+			<div>
+				<button type="submit" class="btn">Register</button>
 
-			<div asp-validation-summary="All"></div>
+				<div asp-validation-summary="All"></div>
 
-			@if (ViewBag.Errors != null)
-			{
-				<div>
-					<ul>
-						@foreach (string error in ViewBag.Errors)
-						{
-							<li>@error</li>
-						}
-					</ul>
-				</div>
-			}
+				@if (ViewBag.Errors != null)
+				{
+					<div>
+						<ul>
+							@foreach (string error in ViewBag.Errors)
+							{
+								<li>@error</li>
+							}
+						</ul>
+					</div>
+				}
+			</div>
 		</div>
-	</div>
 
-</form>
+	</form>
+</div>
+
 

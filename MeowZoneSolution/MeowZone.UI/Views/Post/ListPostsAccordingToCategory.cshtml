@@ -10,47 +10,48 @@
 
 <a asp-controller="Post" asp-action="CreatePost" asp-route-categoryId="@ViewBag.CategoryId" class="btn btn-primary">Create Post</a>
 
+<div class="blocks-container">
+	@foreach (var post in Model)
+	{
+		<div class="post-block">
+			<strong>@post.Title</strong>
+			<p>@post.CreatedAt</p>
+			<p><strong>Author:</strong> @post.AuthorName</p>
+			<div>@post.Content</div>
 
-@foreach (var post in Model)
-{
-	<div>
-		<strong>@post.Title</strong>
-		<p>@post.CreatedAt</p>
-		<p><strong>Author:</strong> @post.AuthorName</p>
-		<div>@post.Content</div>
+			<div class="btn-container">
+				@if (User.IsInRole("Admin") || post.AuthorId.ToString() == currentUserId)
+				{
+					<form asp-controller="Post" asp-action="EditPost" method="get">
+						<input type="hidden" name="postId" value="@post.Id" />
+						<button type="submit" class="btn">Edit</button>
+					</form>
 
-
-
-		@if (User.IsInRole("Admin") || post.AuthorId.ToString() == currentUserId)
-		{
-			<form asp-controller="Post" asp-action="EditPost" method="get">
-				<input type="hidden" name="postId" value="@post.Id" />
-				<button type="submit">Edit</button>
-			</form>
-
-			<form method="post" asp-controller="Post" asp-action="DeletePost">
-				<input type="hidden" name="postId" value="@post.Id" />
-				<input type="hidden" name="categoryId" value="@post.CategoryId" />
-				<button type="submit" class="btn btn-danger">Delete</button>
-			</form>
-		}
+					<form method="post" asp-controller="Post" asp-action="DeletePost">
+						<input type="hidden" name="postId" value="@post.Id" />
+						<input type="hidden" name="categoryId" value="@post.CategoryId" />
+						<button type="submit" class="btn btn-danger">Delete</button>
+					</form>
+				}
 		
 
-		<form method="get" asp-controller="Comment" asp-action="GoToComments">
-			<input type="hidden" name="Id" value="@post.Id" />
-			<input type="hidden" name="categoryId" value="@post.CategoryId" />
-			<input type="hidden" name="content" value="@post.Content" />
-			<input type="hidden" name="createdAt" value="@post.CreatedAt" />
-			<input type="hidden" name="Title" value="@post.Title" />
-			<input type="hidden" name="authorId" value="@post.AuthorId" />
+				<form method="get" asp-controller="Comment" asp-action="GoToComments">
+					<input type="hidden" name="Id" value="@post.Id" />
+					<input type="hidden" name="categoryId" value="@post.CategoryId" />
+					<input type="hidden" name="content" value="@post.Content" />
+					<input type="hidden" name="createdAt" value="@post.CreatedAt" />
+					<input type="hidden" name="Title" value="@post.Title" />
+					<input type="hidden" name="authorId" value="@post.AuthorId" />
 
-			<button type="submit" class="btn btn-danger">Go to comments</button>
-		</form>
+					<button type="submit" class="btn btn-danger">Go to comments</button>
+				</form>
+			</div>
+
+		</div>
+	}
+</div>
 
 
-		<br />
-	</div>
-}
 
 
 

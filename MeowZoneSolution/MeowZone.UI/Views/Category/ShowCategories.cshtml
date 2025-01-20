@@ -7,36 +7,49 @@
 
 @if (User.IsInRole("Admin"))
 {
-	<a asp-controller="Category" asp-action="CreateCategory">Create Category</a>
+	<a asp-controller="Category" asp-action="CreateCategory" class="btn btn-primary">Create Category</a>
 }
 
 
-@foreach (var category in Model)
-{
-	<div>
-		<strong>@category.Name</strong>
-		<div>
-			@category.Description
-		</div>
+<div class="blocks-container">
+	@foreach (var category in Model)
+	{
+		<div class="post-block">
+			<strong>@category.Name</strong>
+			<div>
+				@{
+					var description = category.Description ?? string.Empty; // Handle null
+					var truncatedDescription = description.Length > 100 
+						? description.Substring(0, 100) + "..." 
+						: description;
+				}
+				@truncatedDescription
+			</div>
 		
-		@if (User.IsInRole("Admin"))
-		{
-			<form asp-controller="Category" asp-action="EditCategory" method="get">
-				<input type="hidden" name="categoryId" value="@category.Id" />
-				<button type="submit">Edit</button>
-			</form>
+			
+			<div class="btn-container">
+				@if (User.IsInRole("Admin"))
+				{
+					<form asp-controller="Category" asp-action="EditCategory" method="get">
+						<input type="hidden" name="categoryId" value="@category.Id" />
+						<button type="submit" class="btn">Edit</button>
+					</form>
 
-			<form method="post" asp-controller="Category" asp-action="DeleteCategory">
-				<input type="hidden" name="categoryId" value="@category.Id" />
-				<button type="submit" class="btn btn-danger">Delete</button>
-			</form>
-		}
+					<form method="post" asp-controller="Category" asp-action="DeleteCategory">
+						<input type="hidden" name="categoryId" value="@category.Id" />
+						<button type="submit" class="btn btn-danger">Delete</button>
+					</form>
+				}
 
-		<form method="get" asp-controller="Post" asp-action="ListPostsAccordingToCategory">
-			<input type="hidden" name="categoryId" value="@category.Id" />
-			<button type="submit" class="btn btn-danger">Go to posts</button>
-		</form>
+				<form method="get" asp-controller="Post" asp-action="ListPostsAccordingToCategory">
+					<input type="hidden" name="categoryId" value="@category.Id" />
+					<button type="submit" class="btn btn-danger">Go to posts</button>
+				</form>
+			</div>
 
-		<br />
-	</div>
-}
+		</div>
+	}
+</div>
+
+
+
