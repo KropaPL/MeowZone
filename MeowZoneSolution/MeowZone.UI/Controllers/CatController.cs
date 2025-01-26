@@ -117,7 +117,7 @@ namespace MeowZone.UI.Controllers
 
 
 
-
+		[HttpGet]
 		public async Task<IActionResult> ShowCats()
 		{
 			var user = await _userManager.GetUserAsync(User);

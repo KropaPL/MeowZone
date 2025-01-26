@@ -21,6 +21,8 @@ namespace MeowZone.UI.Controllers
 			_categoryDeleterService = categoryDeleterService;
 			_categoryUpdaterService = categoryUpdaterService;
 		}
+
+		[HttpGet]
 		public async Task<IActionResult> ShowCategories()
 		{
 			var categories = await _categoryGetterService.GetAllCategories();

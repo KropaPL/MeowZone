@@ -11,6 +11,7 @@ namespace MeowZone.Controllers
 
         }
 
+        [HttpGet]
         [Route("[action]")]
         [Route("/")]
         public IActionResult Index()

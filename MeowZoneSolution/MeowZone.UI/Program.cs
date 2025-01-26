@@ -88,12 +88,17 @@ namespace MeowZone
             // Barf Calculator
             builder.Services.AddScoped<IBarfCalculator, BarfCalculator>();
 
+            // Swagger
+            builder.Services.AddEndpointsApiExplorer();
+            builder.Services.AddSwaggerGen();
 
             var app = builder.Build();
 
 
             app.UseHsts();
             app.UseHttpsRedirection();
+            app.UseSwagger();
+            app.UseSwaggerUI();
             app.UseStaticFiles();
             app.UseRouting();
             app.UseAuthentication();
