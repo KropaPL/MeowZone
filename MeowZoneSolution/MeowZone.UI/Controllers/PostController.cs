@@ -97,7 +97,7 @@ namespace MeowZone.UI.Controllers
 			return RedirectToAction(nameof(ListPostsAccordingToCategory), "Post", new { categoryId = post.CategoryId });
 		}
 
-		[HttpPost]
+		[HttpDelete]
 		public async Task<IActionResult> DeletePost(Guid postId, Guid categoryId)
 		{
 			var post = await _postsGetterService.GetPostByPostId(postId);

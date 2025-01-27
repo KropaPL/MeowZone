@@ -27,11 +27,14 @@
 						<button type="submit" class="btn">Edit</button>
 					</form>
 
+
 					<form method="post" asp-controller="Post" asp-action="DeletePost">
+						<input type="hidden" name="_method" value="DELETE" />
 						<input type="hidden" name="postId" value="@post.Id" />
 						<input type="hidden" name="categoryId" value="@post.CategoryId" />
 						<button type="submit" class="btn btn-danger">Delete</button>
 					</form>
+
 				}
 		
 
