@@ -77,27 +77,31 @@ namespace MeowZone.UI.Controllers
 			return View(postUpdateRequest);
 		}
 
-		[HttpPost]
-		public async Task<IActionResult> EditPost(PostUpdateRequest postUpdateRequest)
-		{
-			if (!ModelState.IsValid)
-			{
-				return View(postUpdateRequest);
-			}
+        [HttpPut]
+        public async Task<IActionResult> EditPost(PostUpdateRequest postUpdateRequest)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(postUpdateRequest); // If model is invalid, re-render the edit page
+            }
 
-			var post = await _postsGetterService.GetPostByPostId(postUpdateRequest.Id);
-			if (post == null)
-			{
-				return NotFound();
-			}
+            // Retrieve the post by its ID
+            var post = await _postsGetterService.GetPostByPostId(postUpdateRequest.Id);
+            if (post == null)
+            {
+                return NotFound(); // If post doesn't exist, return 404
+            }
 
-			await _postsUpdaterService.UpdatePost(postUpdateRequest);
+            // Update the post
+            await _postsUpdaterService.UpdatePost(postUpdateRequest);
 
-			ViewBag.categoryId = post.CategoryId;
-			return RedirectToAction(nameof(ListPostsAccordingToCategory), "Post", new { categoryId = post.CategoryId });
-		}
+            // Redirect to posts list according to the category
+            ViewBag.categoryId = post.CategoryId;
+            return RedirectToAction(nameof(ListPostsAccordingToCategory), "Post", new { categoryId = post.CategoryId });
+        }
 
-		[HttpDelete]
+
+        [HttpDelete]
 		public async Task<IActionResult> DeletePost(Guid postId, Guid categoryId)
 		{
 			var post = await _postsGetterService.GetPostByPostId(postId);
