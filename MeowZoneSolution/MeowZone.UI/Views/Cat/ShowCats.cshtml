@@ -34,8 +34,8 @@
 					<button type="submit" class="btn">Edit</button>
 				</form>
 
-				<form method="post" asp-controller="Cat" asp-action="DeleteCat">
-					<input type="hidden" name="catId" value="@cat.Id" />
+				<form asp-action="DeleteCat" asp-route-catId="@cat.Id" method="post">
+					<input type="hidden" name="_method" value="DELETE" />
 					<button type="submit" class="btn btn-danger">Delete</button>
 				</form>
 			</div>

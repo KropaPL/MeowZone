@@ -94,6 +94,14 @@ namespace MeowZone
 
             var app = builder.Build();
 
+            app.Use(async (context, next) =>
+            {
+                if (context.Request.Method == "POST" && context.Request.Form["_method"] == "DELETE")
+                {
+                    context.Request.Method = "DELETE";
+                }
+                await next();
+            });
 
             app.UseHsts();
             app.UseHttpsRedirection();
@@ -103,7 +111,16 @@ namespace MeowZone
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
+
+
+            app.MapControllerRoute(
+                name: "default",
+                pattern: "{controller=Home}/{action=Index}/{id?}");
+
             app.MapControllers();
+
+
+
 
             app.Run();
         }

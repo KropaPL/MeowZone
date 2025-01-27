@@ -51,24 +51,22 @@ namespace MeowZone.UI.Controllers
 			return RedirectToAction(nameof(ShowCats));
 		}
 
-		[HttpPost]
-		public async Task<IActionResult> DeleteCat(Guid catId)
-		{
-			// Ensure the cat exists and belongs to the current user
-			var cat = await _catsGetterService.GetCatByCatId(catId);
-			if (cat == null)
-			{
-				return NotFound();  // If no cat found, return 404 Not Found
-			}
+        [HttpDelete]
+        public async Task<IActionResult> DeleteCat(Guid catId)
+        {
+            var cat = await _catsGetterService.GetCatByCatId(catId);
+            if (cat == null)
+            {
+                return NotFound(); // Return 404 if the cat is not found
+            }
 
-			// Call the service to delete the cat
-			await _catsDeleterService.DeleteCat(catId);
+            await _catsDeleterService.DeleteCat(catId);
 
-			// Redirect to the ShowCats page after deletion
-			return RedirectToAction(nameof(ShowCats));
-		}
+            return RedirectToAction(nameof(ShowCats));
+        }
 
-		[HttpGet]
+
+        [HttpGet]
 		public async Task<IActionResult> EditCat(Guid catId)
 		{
 			// Retrieve the cat to be edited
