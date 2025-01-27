@@ -68,7 +68,7 @@ namespace MeowZone.UI.Controllers
 		return RedirectToAction(nameof(GoToComments), "Comment", new { id = postId });
 	}
 
-		[HttpPost]
+		[HttpDelete]
 		public async Task<IActionResult> DeleteComment(Guid commentId, Guid postId)
 		{
 			var comment = await _commentGetterService.GetCommentByCommentId(commentId);

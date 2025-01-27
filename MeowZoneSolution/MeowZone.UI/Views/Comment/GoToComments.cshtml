@@ -43,10 +43,12 @@
 					@if (User.IsInRole("Admin") || comment.AuthorId.ToString() == currentUserId)
 					{
 						<form method="post" asp-controller="Comment" asp-action="DeleteComment">
+							<input type="hidden" name="_method" value="DELETE" />
 							<input type="hidden" name="postId" value="@Model.PostId" />
 							<input type="hidden" name="commentId" value="@comment.Id" />
 							<button type="submit" class="btn btn-danger">Delete</button>
 						</form>
+
 
 						<form method="get" asp-controller="Comment" asp-action="EditComment">
 							<input type="hidden" name="postId" value="@Model.PostId" />
