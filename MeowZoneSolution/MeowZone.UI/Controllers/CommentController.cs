@@ -49,26 +49,30 @@ namespace MeowZone.UI.Controllers
 			return View(commentUpdateRequest);
 		}
 
-		[HttpPost]
-		public async Task<IActionResult> EditComment(CommentUpdateRequest commentUpdateRequest, Guid postId)
-		{
-			if (!ModelState.IsValid)
-			{
-				return View(commentUpdateRequest);
-			}
+        [HttpPut]
+        public async Task<IActionResult> EditComment(CommentUpdateRequest commentUpdateRequest, Guid postId)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(commentUpdateRequest); // Re-render the view if the model is invalid
+            }
 
-			var comment = await _commentGetterService.GetCommentByCommentId(commentUpdateRequest.Id);
-			if (comment == null)
-			{
-				return NotFound();
-			}
+            // Retrieve the comment by its ID
+            var comment = await _commentGetterService.GetCommentByCommentId(commentUpdateRequest.Id);
+            if (comment == null)
+            {
+                return NotFound(); // If comment not found, return 404
+            }
 
-			await _commentUpdaterService.UpdateComment(commentUpdateRequest);
+            // Update the comment
+            await _commentUpdaterService.UpdateComment(commentUpdateRequest);
 
-		return RedirectToAction(nameof(GoToComments), "Comment", new { id = postId });
-	}
+            // Redirect to the comments view for the given post
+            return RedirectToAction(nameof(GoToComments), "Comment", new { id = postId });
+        }
 
-		[HttpDelete]
+
+        [HttpDelete]
 		public async Task<IActionResult> DeleteComment(Guid commentId, Guid postId)
 		{
 			var comment = await _commentGetterService.GetCommentByCommentId(commentId);
