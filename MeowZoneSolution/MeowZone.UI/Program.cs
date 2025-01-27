@@ -103,6 +103,16 @@ namespace MeowZone
                 await next();
             });
 
+            app.Use(async (context, next) =>
+            {
+                if (context.Request.Method == "POST" && context.Request.Form["_method"] == "PUT")
+                {
+                    context.Request.Method = "PUT";
+                }
+                await next();
+            });
+
+
             app.UseHsts();
             app.UseHttpsRedirection();
             app.UseSwagger();

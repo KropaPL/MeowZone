@@ -2,7 +2,10 @@
 
 <h2>Edit Cat</h2>
 
-<form method="post">
+<form method="post" asp-controller="Cat" asp-action="EditCat">
+	<!-- Hidden field to indicate HTTP PUT -->
+	<input type="hidden" name="_method" value="PUT" />
+
 	<!-- Hidden field to store the catId -->
 	<input type="hidden" name="Id" value="@Model.Id" />
 

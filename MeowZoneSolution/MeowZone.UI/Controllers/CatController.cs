@@ -51,22 +51,22 @@ namespace MeowZone.UI.Controllers
 			return RedirectToAction(nameof(ShowCats));
 		}
 
-        [HttpDelete]
-        public async Task<IActionResult> DeleteCat(Guid catId)
-        {
-            var cat = await _catsGetterService.GetCatByCatId(catId);
-            if (cat == null)
-            {
-                return NotFound(); // Return 404 if the cat is not found
-            }
+		[HttpDelete]
+public async Task<IActionResult> DeleteCat(Guid catId)
+{
+    var cat = await _catsGetterService.GetCatByCatId(catId);
+    if (cat == null)
+    {
+        return NotFound(); // Return 404 if the cat is not found
+    }
 
-            await _catsDeleterService.DeleteCat(catId);
+    await _catsDeleterService.DeleteCat(catId);
 
-            return RedirectToAction(nameof(ShowCats));
-        }
+    return RedirectToAction(nameof(ShowCats));
+}
 
 
-        [HttpGet]
+		[HttpGet]
 		public async Task<IActionResult> EditCat(Guid catId)
 		{
 			// Retrieve the cat to be edited
@@ -91,31 +91,32 @@ namespace MeowZone.UI.Controllers
 			return View(catUpdateRequest);  // Pass the model with current cat data
 		}
 
-		[HttpPost]
-		public async Task<IActionResult> EditCat(CatUpdateRequest catEditRequest)
-		{
-			if (!ModelState.IsValid)
-			{
-				return View(catEditRequest);  // If model is invalid, re-render the edit page with the data
-			}
+        [HttpPut]
+        public async Task<IActionResult> EditCat(CatUpdateRequest catEditRequest)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(catEditRequest); // Re-render the form if the model is invalid
+            }
 
-			// Retrieve the existing cat from the database
-			var cat = await _catsGetterService.GetCatByCatId(catEditRequest.Id);
-			if (cat == null)
-			{
-				return NotFound();  // If the cat is not found, return 404
-			}
+            // Retrieve the existing cat from the database
+            var cat = await _catsGetterService.GetCatByCatId(catEditRequest.Id);
+            if (cat == null)
+            {
+                return NotFound(); // If the cat is not found, return 404
+            }
 
-			// Update the cat's properties here if needed
-			await _catsUpdaterService.UpdateCat(catEditRequest);
+            // Update the cat's properties here if needed
+            await _catsUpdaterService.UpdateCat(catEditRequest);
 
-			// Redirect to the ShowCats page after editing
-			return RedirectToAction(nameof(ShowCats));
-		}
+            // Redirect to the ShowCats page after editing
+            return RedirectToAction(nameof(ShowCats));
+        }
 
 
 
-		[HttpGet]
+
+        [HttpGet]
 		public async Task<IActionResult> ShowCats()
 		{
 			var user = await _userManager.GetUserAsync(User);
