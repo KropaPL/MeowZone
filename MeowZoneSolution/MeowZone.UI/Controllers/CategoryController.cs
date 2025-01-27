@@ -81,23 +81,24 @@ namespace MeowZone.UI.Controllers
 			return View(categoryUpdateRequest);
 		}
 
-		[HttpPost]
-		public async Task<IActionResult> EditCategory(CategoryUpdateRequest categoryUpdateRequest)
-		{
-			if (!ModelState.IsValid)
-			{
-				return View(categoryUpdateRequest);
-			}
+        [HttpPut]
+        public async Task<IActionResult> EditCategory(CategoryUpdateRequest categoryUpdateRequest)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(categoryUpdateRequest); 
+            }
 
-			var category = await _categoryGetterService.GetCategoryByCategoryId(categoryUpdateRequest.Id);
-			if (category == null)
-			{
-				return NotFound();
-			}
+            var category = await _categoryGetterService.GetCategoryByCategoryId(categoryUpdateRequest.Id);
+            if (category == null)
+            {
+                return NotFound(); 
+            }
 
-			await _categoryUpdaterService.UpdateCategory(categoryUpdateRequest);
+            await _categoryUpdaterService.UpdateCategory(categoryUpdateRequest);
 
-			return RedirectToAction(nameof(ShowCategories));
-		}
-	}
+            return RedirectToAction(nameof(ShowCategories)); 
+        }
+
+    }
 }

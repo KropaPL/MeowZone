@@ -10,8 +10,9 @@
 </div>
 
 <form method="post" asp-action="EditCategory" asp-controller="Category">
+	<input type="hidden" name="_method" value="PUT" />
 	<input type="hidden" asp-for="Id" />
-    
+
 	<div class="form-group">
 		<label for="Name">Name</label>
 		<input type="text" class="form-control" asp-for="Name" required />
@@ -23,6 +24,5 @@
 
 	<button type="submit" class="btn btn-primary">Save Changes</button>
 </form>
-
 
 <a href="@Url.Action("ShowCategories")" class="btn btn-secondary">Cancel</a>
