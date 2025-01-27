@@ -36,6 +36,7 @@
 					</form>
 
 					<form method="post" asp-controller="Category" asp-action="DeleteCategory">
+						<input type="hidden" name="_method" value="DELETE" />
 						<input type="hidden" name="categoryId" value="@category.Id" />
 						<button type="submit" class="btn btn-danger">Delete</button>
 					</form>

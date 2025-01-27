@@ -49,8 +49,8 @@ namespace MeowZone.UI.Controllers
 			return RedirectToAction(nameof(ShowCategories));
 		}
 
-		[HttpPost]
-		public async Task<IActionResult> DeleteCategory(Guid categoryId)
+        [HttpDelete]
+        public async Task<IActionResult> DeleteCategory(Guid categoryId)
 		{
 			var category = await _categoryGetterService.GetCategoryByCategoryId(categoryId);
 			if (category == null)
