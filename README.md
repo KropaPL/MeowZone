@@ -26,9 +26,6 @@ Domain - folder na modele i interfejsy serwisów </br>
 Domain/Entities - folder na modele </br>
 Domain/IdentityEntities - folder na modele związane z użytkownikiem </br>
 Domain/RepositoryContracts - folder na interfejsy repozytoriów</br>
-
-</br>
-
 DTO - folder na obiekty DTO </br>
 Enums - folder na typy wyliczeniowe </br>
 ServiceContracts - folder na interfejsy serwisów </br>
